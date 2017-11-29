@@ -9,6 +9,8 @@
 #import "Demo2ViewController.h"
 #import "PPVideoPlayerView.h"
 
+#import "AppDelegate.h"
+
 @interface Demo2ViewController ()<PPVideoPlayerViewDelegate>
 
 @property (nonatomic,strong) PPVideoPlayerView *videoPlayer;
@@ -100,7 +102,8 @@
  *  初始化页面初始数据
  */
 -(void)initData{
-    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.allowRotation = YES;//设置竖屏
 }
 
 /**
@@ -126,11 +129,12 @@
  *  加载数据
  */
 -(void)loadData{
-    NSURL *movieUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cdvideo" ofType:@"mp4"]];
+    //NSURL *movieUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cdvideo" ofType:@"mp4"]];
+    NSURL *movieUrl = [NSURL URLWithString:@"http://1252065688.vod2.myqcloud.com/d7dc3e4avodgzp1252065688/e66bae544564972818527816264/MY2sqkSHZMkA.mp4"];
     self.videoPlayer.title = @"video title2";
     self.videoPlayer.playUrl = movieUrl;
-    self.videoPlayer.isLive = YES;
-    self.videoPlayer.isWifiNetwork = NO;
+    self.videoPlayer.isLive = NO;
+    self.videoPlayer.isWifiNetwork = YES;
     [self.videoPlayer prepareToPlay];
     //[self.videoPlayer play];
 }
@@ -154,7 +158,21 @@
 }
 
 #pragma mark - 自定义方法
-
+- (void)setNewOrientation:(BOOL)fullscreen{
+    if (fullscreen) {
+        NSNumber *resetOrientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationUnknown];
+        [[UIDevice currentDevice] setValue:resetOrientationTarget forKey:@"orientation"];
+        
+        NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
+        [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+    }else{
+        NSNumber *resetOrientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationUnknown];
+        [[UIDevice currentDevice] setValue:resetOrientationTarget forKey:@"orientation"];
+        
+        NSNumber *orientationTarget = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+        [[UIDevice currentDevice] setValue:orientationTarget forKey:@"orientation"];
+    }
+}
 #pragma mark - 事件通知
 
 #pragma mark - 委托代理
@@ -207,15 +225,15 @@
  */
 - (void)PPVideoPlayerView:(PPVideoPlayerView*)view playStatusChanged:(PPVideoPlayerStatus)status{
     
-//    if(status == PPVideoPlayerStatusPlaying){
-//        //NSLog(@"%s-正在播放中",__FUNCTION__);
-//    }else if(status == PPVideoPlayerStatusPause){
-//        NSLog(@"%s-暂停",__FUNCTION__);
-//    }else if(status == PPVideoPlayerStatusStop){
-//        NSLog(@"%s-停止",__FUNCTION__);
-//    }else{
-//        NSLog(@"%s-未知",__FUNCTION__);
-//    }
+    if(status == PPVideoPlayerStatusPlaying){
+        NSLog(@"%s-正在播放中",__FUNCTION__);
+    }else if(status == PPVideoPlayerStatusPause){
+        NSLog(@"%s-暂停",__FUNCTION__);
+    }else if(status == PPVideoPlayerStatusStop){
+        NSLog(@"%s-停止",__FUNCTION__);
+    }else{
+        NSLog(@"%s-未知",__FUNCTION__);
+    }
 }
 
 /**
@@ -246,8 +264,18 @@
  */
 - (void)PPVideoPlayerView:(PPVideoPlayerView*)view backAction:(id)sender{
     NSLog(@"%s",__FUNCTION__);
-    
-    [self.navigationController popViewControllerAnimated:YES];
+    if(self.videoPlayer.fullScreen){
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        appDelegate.allowRotation = NO;//设置竖屏
+        [self setNewOrientation:NO];//调用转屏代码
+        appDelegate.allowRotation = YES;
+        
+        self.videoPlayer.showBackButton = NO;
+        self.videoPlayer.showTopBar = NO;
+        self.videoPlayer.fullScreen = NO;
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 
@@ -358,6 +386,22 @@
  */
 - (void)PPVideoPlayerView:(PPVideoPlayerView*)view fullScreenAction:(id)sender{
     NSLog(@"%s",__FUNCTION__);
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(self.videoPlayer.fullScreen){
+        appDelegate.allowRotation = NO;//设置竖屏
+        [self setNewOrientation:NO];//调用转屏代码
+        self.videoPlayer.showBackButton = NO;
+        self.videoPlayer.showTopBar = NO;
+        self.videoPlayer.fullScreen = NO;
+    }else{
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        appDelegate.allowRotation = YES;//设置横屏
+        [self setNewOrientation:YES];//调用转屏代码
+        self.videoPlayer.showBackButton = YES;
+        self.videoPlayer.showTopBar = YES;
+        self.videoPlayer.fullScreen = YES;
+    }
+    appDelegate.allowRotation = YES;
 }
 
 @end

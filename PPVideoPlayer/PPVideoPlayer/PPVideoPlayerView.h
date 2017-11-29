@@ -12,8 +12,10 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import <NELivePlayer/NELivePlayer.h>
-#import <NELivePlayer/NELivePlayerController.h>
+#import "NELivePlayer.h"
+#import "NELivePlayerController.h"
+//#import <NELivePlayer/NELivePlayer.h>
+//#import <NELivePlayer/NELivePlayerController.h>
 
 typedef enum : NSUInteger {
     PPVideoPlayerStatusUnknown,
@@ -26,6 +28,7 @@ typedef enum : NSUInteger {
 typedef enum : NSUInteger {
     PPVideoPlayerControlStyleDefault,
     PPVideoPlayerControlStyleFullScreen,
+    PPVideoPlayerControlStyleSmallScreen,
     PPVideoPlayerControlStyleNotWifi,
 } PPVideoPlayerControlStyle;
 
@@ -51,6 +54,11 @@ typedef enum : NSUInteger {
 @property (nonatomic,assign) BOOL isWifiNetwork;
 
 /**
+ 是否自动播放
+ */
+@property (nonatomic,assign) BOOL isAutoPlay;
+
+/**
  全屏状态,默认NO
  */
 @property (nonatomic,assign,getter=isFullScreen) BOOL fullScreen;
@@ -58,6 +66,9 @@ typedef enum : NSUInteger {
  是否是直播，默认NO
  */
 @property (nonatomic,assign) BOOL isLive;
+//播放器属性（只针对点播）
+//当前播放时间点
+@property (nonatomic,assign) NSTimeInterval currentTime;
 
 /**
  控制控件显示的样式

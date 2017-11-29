@@ -15,6 +15,14 @@
 @implementation AppDelegate
 
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window{
+    if (_allowRotation == YES) {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }else{
+        return (UIInterfaceOrientationMaskPortrait);
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     return YES;

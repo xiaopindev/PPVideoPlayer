@@ -20,7 +20,7 @@
 
 //播放器属性（只针对点播）
 //当前播放时间点
-@property (nonatomic,assign) NSTimeInterval currentTime;
+//@property (nonatomic,assign) NSTimeInterval currentTime;
 
 //用于控制topView 和 bottomView 的自动显示隐藏
 @property (nonatomic,assign) BOOL controlHidden;
@@ -580,7 +580,7 @@
     }else{
         [self.liveplayer setBufferStrategy:NELPAntiJitter];//点播模式
     }
-#if 0
+#if 1
     [self.liveplayer prepareToPlay]; //初始化视频文件
     
     //显示加载中
@@ -785,10 +785,16 @@
  重新加载顶部控件视图
  */
 - (void)reloadTopControlViews{
-    if(self.controlStyle == PPVideoPlayerControlStyleNotWifi || !self.showTopBar){
+    if(self.controlStyle == PPVideoPlayerControlStyleNotWifi){
         self.topView.alpha = 0;
         return;
     }
+    
+    if(!self.showTopBar){
+        [self.topView removeFromSuperview];
+        return;
+    }
+    
     self.topView.frame = CGRectMake(0, 0, self.bounds.size.width, 40);
     [self.topView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
@@ -966,7 +972,7 @@
             }
             
             if(!hasRightBtn){
-                pX = self.bottomView.frame.size.width - 5;
+                pX = self.bottomView.frame.size.width - 50 - 5;
             }else{
                 pX = pX - (50-30);
             }
@@ -1040,7 +1046,7 @@
             }
             
             if(!hasRightBtn){
-                pX = self.bottomView.frame.size.width - 5;
+                pX = self.bottomView.frame.size.width - 50 - 5;
             }else{
                 pX = pX - (50-30);
             }
@@ -1080,13 +1086,18 @@
 - (void)showLoading{
     self.isAlerting = YES;
     [self addSubview:self.alertView];
+#if 1
     NSMutableArray *loadingImages = [NSMutableArray array];
-    for (int i = 0; i<=8; i++) {
+    for (int i = 1; i<=8; i++) {
         [loadingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"PPKit_vp_loading_%d",i]]];
     }
     self.alertImageView.animationImages = loadingImages;
     self.alertImageView.animationDuration = 2.0f;
     self.alertImageView.animationRepeatCount = 0;
+#else
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"PPKit_vp_loading2" ofType:@"gif"];
+    [self.alertImageView loadImageWithUrl:imagePath defaultImage:nil];
+#endif
     self.alertLabel.text = @"视频加载中";
 
     [self.alertImageView startAnimating];
@@ -1139,6 +1150,7 @@
     [self addSubview:self.notWifiView];
     [self.notWifiView addSubview:self.labNotWifiMsg];
     [self.notWifiView addSubview:self.btnContinuePlay];
+    [self bringSubviewToFront:self.btnBack];
 }
 
 //显示直播结束提示和控制
@@ -1449,7 +1461,7 @@
 {
     //add some methods
     NSLog(@"NELivePlayerDidPreparedToPlay");
-    if(self.isWifiNetwork){
+    if(self.isWifiNetwork && self.isAutoPlay){
         [self play]; //开始播放
     }
 }
@@ -1510,6 +1522,11 @@
             
         case NELPMovieFinishReasonUserExited:
             //人为退出(暂未使用，保留值)
+            if (self.isLive) {
+                //直播结束,提示信息
+                NSLog(@"直播结束");
+                [self showLiveOverView];
+            }
             break;
             
         default:
