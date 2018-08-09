@@ -7,11 +7,15 @@
 //
 
 #import "PPVideoPlayerView.h"
+#import "OCBarrage.h"
 
 @interface PPVideoPlayerView ()
 {
     CGFloat pX,pY,pWidth,pHeight;
 }
+
+//弹幕对象
+@property (nonatomic, strong) OCBarrageManager *barrageManager;
 
 //播放器核心（必须）
 @property (nonatomic, strong) UIView *playerView;
@@ -32,6 +36,8 @@
 @property (nonatomic,assign) BOOL isAlerting;
 //直播是否结束
 @property (nonatomic,assign) BOOL isLiveOver;
+//弹幕是否关闭
+@property (nonatomic,assign) BOOL isBarrageClose;
 
 //顶部视频信息和控制视图
 @property (nonatomic,strong) UIButton *btnBack;
@@ -53,6 +59,8 @@
 @property (nonatomic,strong) UILabel *labNotWifiMsg;
 @property (nonatomic,strong) UIButton *btnContinuePlay;
 
+//直播未开始提示
+@property (nonatomic,strong) UILabel *liveNotStartedView;
 //直播结束提示
 @property (nonatomic,strong) UILabel *liveOverView;
 
@@ -68,6 +76,7 @@
 @property (nonatomic,strong) UIButton *btnQuality;
 @property (nonatomic,strong) UIButton *btnVideoList;
 @property (nonatomic,strong) UIButton *btnToTV;
+@property (nonatomic,strong) UIButton *btnBarrage;
 @property (nonatomic,strong) UIButton *btnFullScreen;
 
 @end
@@ -245,6 +254,18 @@
     return _btnContinuePlay;
 }
 
+-(UILabel *)liveNotStartedView{
+    if(!_liveNotStartedView){
+        _liveNotStartedView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+        _liveNotStartedView.text = @"主播正在赶来路上";
+        _liveNotStartedView.textAlignment = NSTextAlignmentCenter;
+        _liveNotStartedView.textColor = [UIColor lightGrayColor];
+        _liveNotStartedView.backgroundColor = [UIColor blackColor];
+        _liveNotStartedView.font = [UIFont systemFontOfSize:20];
+    }
+    return _liveNotStartedView;
+}
+
 -(UILabel *)liveOverView{
     if(!_liveOverView){
         _liveOverView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
@@ -378,6 +399,16 @@
     return _btnToTV;
 }
 
+-(UIButton *)btnBarrage{
+    if(!_btnBarrage){
+        _btnBarrage = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnBarrage.frame = CGRectMake(0, 5, 30, 30);
+        [_btnBarrage setImage:[UIImage imageNamed:@"PPKit_vp_dan_1"] forState:UIControlStateNormal];
+        [_btnBarrage addTarget:self action:@selector(barrageAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnBarrage;
+}
+
 -(UIButton *)btnFullScreen{
     if(!_btnFullScreen){
         _btnFullScreen = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -407,6 +438,17 @@
             self.topView.alpha = 1;
             self.bottomView.alpha = 1;
         }];
+        
+        //初始化弹幕对象
+        self.barrageManager = [[OCBarrageManager alloc] init];
+        [self addSubview:self.barrageManager.renderView];
+        self.barrageManager.renderView.frame = CGRectMake(0, 40, self.bounds.size.width, self.bounds.size.height - 80);
+        //    self.barrageManager.renderView.center = self.view.center;
+        self.barrageManager.renderView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        //添加平移手势
+        //UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panMove:)];
+        //[self addGestureRecognizer:panGesture];
     }
     return self;
 }
@@ -713,6 +755,9 @@
     //移除所有监听
     [self removeNotifyObservers];
     
+    //停止弹幕
+    [self stopBarrage];
+    
     if(self.delegate && [self.delegate respondsToSelector:@selector(PPVideoPlayerView:playStatusChanged:)]){
         [self.delegate PPVideoPlayerView:self playStatusChanged:PPVideoPlayerStatusStop];
     }
@@ -887,10 +932,17 @@
     
     //没有Wifi视图
     
+    //直播未开始
+    if(_liveNotStartedView){
+        _liveNotStartedView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+    }
+    
     //直播结束视图
     if(_liveOverView){
         _liveOverView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
     }
+    
+    self.barrageManager.renderView.frame = CGRectMake(0, 40, self.bounds.size.width, self.bounds.size.height - 80);
 }
 
 /**
@@ -928,6 +980,12 @@
                 [self.btnFullScreen setImage:[UIImage imageNamed:@"PPKit_vp_smallscreen"] forState:UIControlStateNormal];
             }
             
+            if(self.showBarrageButton){
+                [self.bottomView addSubview:self.btnBarrage];
+                self.btnBarrage.frame = CGRectMake(pX, 5, 30, 30);
+                pX = pX - self.btnBarrage.frame.size.width - 5;
+            }
+            
             if(self.showToTVButton){
                 [self.bottomView addSubview:self.btnToTV];
                 self.btnToTV.frame = CGRectMake(pX, 5, 30, 30);
@@ -955,6 +1013,12 @@
                 pX = pX - self.btnFullScreen.frame.size.width - 5;
                 
                 [self.btnFullScreen setImage:[UIImage imageNamed:@"PPKit_vp_smallscreen"] forState:UIControlStateNormal];
+            }
+            
+            if(self.showBarrageButton){
+                [self.bottomView addSubview:self.btnBarrage];
+                self.btnBarrage.frame = CGRectMake(pX, 5, 30, 30);
+                pX = pX - self.btnBarrage.frame.size.width - 5;
             }
             
             if(self.showToTVButton){
@@ -1009,6 +1073,12 @@
                 [self.btnFullScreen setImage:[UIImage imageNamed:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
             }
             
+            if(self.showBarrageButton){
+                [self.bottomView addSubview:self.btnBarrage];
+                self.btnBarrage.frame = CGRectMake(pX, 5, 30, 30);
+                pX = pX - self.btnBarrage.frame.size.width - 5;
+            }
+            
             if(self.showToTVButton){
                 [self.bottomView addSubview:self.btnToTV];
                 self.btnToTV.frame = CGRectMake(pX, 5, 30, 30);
@@ -1038,6 +1108,12 @@
                 [self.btnFullScreen setImage:[UIImage imageNamed:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
             }
             
+            if(self.showBarrageButton){
+                [self.bottomView addSubview:self.btnBarrage];
+                self.btnBarrage.frame = CGRectMake(pX, 5, 30, 30);
+                pX = pX - self.btnBarrage.frame.size.width - 5;
+            }
+            
             if(self.showToTVButton){
                 hasRightBtn = YES;
                 [self.bottomView addSubview:self.btnToTV];
@@ -1062,6 +1138,46 @@
         }
     }
 }
+
+/* 弹幕模块 -Begin */
+
+-(void)setBarrageValue:(NSString *)barrageValue{
+    _barrageValue = barrageValue;
+    
+    [self startBarrage];
+}
+
+- (void)startBarrage {
+    if(!self.isBarrageClose){
+        [self.barrageManager start];
+        
+        OCBarrageTextDescriptor *textDescriptor = [[OCBarrageTextDescriptor alloc] init];
+        textDescriptor.text = self.barrageValue;
+        textDescriptor.textColor = [UIColor whiteColor];
+        textDescriptor.positionPriority = OCBarragePositionLow;
+        textDescriptor.textFont = [UIFont systemFontOfSize:17.0];
+        textDescriptor.strokeColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+        textDescriptor.strokeWidth = -1;
+        textDescriptor.animationDuration = 5;
+        textDescriptor.barrageCellClass = [OCBarrageTextCell class];
+        
+        [self.barrageManager renderBarrageDescriptor:textDescriptor];
+    }
+}
+
+- (void)pasueBarrage {
+    [self.barrageManager pause];
+}
+
+- (void)resumeBarrage {
+    [self.barrageManager resume];
+}
+
+- (void)stopBarrage {
+    [self.barrageManager stop];
+}
+
+/* 弹幕模块 - End */
 
 #pragma mark - --播放状态提示信息
 - (void)hideAlertViews{
@@ -1154,10 +1270,32 @@
 }
 
 //显示直播结束提示和控制
+- (void)showLiveNotStartedView{
+    self.isAlerting = YES;
+    self.isLiveOver = YES;
+    [self addSubview:self.liveNotStartedView];
+    [self bringSubviewToFront:self.btnBack];
+}
+
+- (void)removeLiveNotStartedView{
+    self.isAlerting = NO;
+    self.isLiveOver = NO;
+    [self.liveNotStartedView removeFromSuperview];
+    [self bringSubviewToFront:self.btnBack];
+}
+
+//显示直播结束提示和控制
 - (void)showLiveOverView{
     self.isAlerting = YES;
     self.isLiveOver = YES;
     [self addSubview:self.liveOverView];
+    [self bringSubviewToFront:self.btnBack];
+}
+
+- (void)removeLiveOverView{
+    self.isAlerting = NO;
+    self.isLiveOver = NO;
+    [self.liveOverView removeFromSuperview];
     [self bringSubviewToFront:self.btnBack];
 }
 
@@ -1262,6 +1400,19 @@
     
     NSLog(@"移动前：%@",NSStringFromCGPoint(previous));
     NSLog(@"移动后：%@",NSStringFromCGPoint(current));
+    
+    //判断左右方向
+    if(current.x > self.frame.size.width / 2){
+       NSLog(@"右移动");
+       CGFloat moveOffSet = current.y - previous.y;
+        if(moveOffSet > 0){
+           // [self.liveplayer setVolume:<#(float)#>];
+        }else{
+            
+        }
+    }else{
+        NSLog(@"左移动");
+      }
 }
 
 -(void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -1350,6 +1501,21 @@
     
     if(self.delegate && [self.delegate respondsToSelector:@selector(PPVideoPlayerView:videoListAction:)]){
         [self.delegate PPVideoPlayerView:self videoListAction:nil];
+    }
+}
+
+//弹幕点击
+- (void)barrageAction{
+    if(self.isBarrageClose){
+        [self startBarrage];
+        [_btnBarrage setImage:[UIImage imageNamed:@"PPKit_vp_dan_1"] forState:UIControlStateNormal];
+    }else{
+        [self stopBarrage];
+        [_btnBarrage setImage:[UIImage imageNamed:@"PPKit_vp_dan_0"] forState:UIControlStateNormal];
+    }
+    self.isBarrageClose = !self.isBarrageClose;
+    if(self.delegate && [self.delegate respondsToSelector:@selector(PPVideoPlayerView:barrageAction:)]){
+        [self.delegate PPVideoPlayerView:self barrageAction:nil];
     }
 }
 
@@ -1538,6 +1704,9 @@
         dispatch_source_cancel(_timer);
     }
     
+    //停止弹幕
+    [self stopBarrage];
+    
     if(self.delegate && [self.delegate respondsToSelector:@selector(PPVideoPlayerView:playStatusChanged:)]){
         [self.delegate PPVideoPlayerView:self playStatusChanged:PPVideoPlayerStatusStop];
     }
@@ -1546,6 +1715,8 @@
 //播放器播放状态发生改变时的消息通知
 - (void)NELivePlayerPlaybackStateChanged:(NSNotification*)notification
 {
+    [self removeLiveOverView];
+    [self removeLiveNotStartedView];
     switch (self.liveplayer.playbackState) {
         case NELPMoviePlaybackStatePaused:{
             self.playStatus = PPVideoPlayerStatusPause;
@@ -1599,6 +1770,8 @@
     if(self.delegate && [self.delegate respondsToSelector:@selector(PPVideoPlayerView:playFailed:)]){
         [self.delegate PPVideoPlayerView:self playFailed:nil];
     }
+    
+    [self stopBarrage];
 }
 
 //播放器资源释放完成时的消息通知
@@ -1611,6 +1784,8 @@
     }
     
     [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerReleaseSueecssNotification object:_liveplayer];
+    
+    [self stopBarrage];
 }
 
 @end

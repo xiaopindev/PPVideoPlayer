@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ 网易SDK封装后使用
+ */
 @interface Demo2ViewController : UIViewController
 
 @end

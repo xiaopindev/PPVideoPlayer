@@ -15,6 +15,8 @@
 
 @property (nonatomic,strong) PPVideoPlayerView *videoPlayer;
 
+@property (nonatomic,assign) NSInteger testIndex;
+
 @end
 
 @implementation Demo2ViewController
@@ -33,6 +35,7 @@
         _videoPlayer.showListButton = YES;
         _videoPlayer.showToTVButton = YES;
         _videoPlayer.showFullScreenButton = YES;
+        _videoPlayer.showBarrageButton = YES;
         _videoPlayer.controlStyle = PPVideoPlayerControlStyleDefault;
     }
     
@@ -70,6 +73,8 @@
         [self.videoPlayer stop];
         self.videoPlayer = nil;
     }
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(addBarrage) object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,6 +142,33 @@
     self.videoPlayer.isWifiNetwork = YES;
     [self.videoPlayer prepareToPlay];
     //[self.videoPlayer play];
+    
+    
+    //设置弹幕，给barrageValue设置值就好了
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.videoPlayer.barrageValue = @"测试1";
+//    });
+//
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.videoPlayer.barrageValue = @"测试12";
+//    });
+//
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.videoPlayer.barrageValue = @"测试3";
+//    });
+//
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        self.videoPlayer.barrageValue = @"测试4";
+//    });
+    [self addBarrage];
+}
+
+- (void)addBarrage{
+    self.testIndex++;
+    
+    self.videoPlayer.barrageValue = [NSString stringWithFormat:@"测试字幕%ld",self.testIndex];
+    
+    [self performSelector:@selector(addBarrage) withObject:nil afterDelay:0.5];
 }
 
 - (void)play{

@@ -8,7 +8,19 @@
 //  My Blog: http://xiaopin.cnblogs.com
 //  Git Hub: https://github.com/xiaopn166
 //  QQ交流群：168368234
+//  最后修改时间：2018-06-26
+//  版本：v1.1.0
 //
+
+/*
+ 版本说明：
+ v1.1.0
+    1.增加弹幕功能
+    2.增加音量调节和亮度调节
+ v1.0.0
+    1.使用网易组件自定义播放器界面
+    2.支持直播、点播模式
+ */
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
@@ -16,6 +28,7 @@
 #import "NELivePlayerController.h"
 //#import <NELivePlayer/NELivePlayer.h>
 //#import <NELivePlayer/NELivePlayerController.h>
+#import "OCBarrage.h"
 
 typedef enum : NSUInteger {
     PPVideoPlayerStatusUnknown,
@@ -42,7 +55,10 @@ typedef enum : NSUInteger {
  视频标题，在顶部标题栏显示
  */
 @property (nonatomic,strong) NSString *title;
-
+/**
+ 设置弹幕值
+ */
+@property (nonatomic,strong) NSString *barrageValue;
 /**
  视频本地或网络播放路径
  */
@@ -106,8 +122,18 @@ typedef enum : NSUInteger {
 @property (nonatomic,assign) BOOL showListButton;
 //显示投屏按钮
 @property (nonatomic,assign) BOOL showToTVButton;
+//显示弹幕按钮
+@property (nonatomic,assign) BOOL showBarrageButton;
 //显示全屏按钮
 @property (nonatomic,assign) BOOL showFullScreenButton;
+
+//显示和隐藏直播未开始提示
+- (void)showLiveNotStartedView;
+- (void)removeLiveNotStartedView;
+
+//显示直播结束提示和控制
+- (void)showLiveOverView;
+- (void)removeLiveOverView;
 
 /**
  播放资源装载
@@ -252,6 +278,14 @@ typedef enum : NSUInteger {
  @param sender <#sender description#>
  */
 - (void)PPVideoPlayerView:(PPVideoPlayerView*)view videoListAction:(id)sender;
+
+/**
+ 弹幕按钮点击
+ 
+ @param view   <#view description#>
+ @param sender <#sender description#>
+ */
+- (void)PPVideoPlayerView:(PPVideoPlayerView*)view barrageAction:(id)sender;
 
 /**
  全屏/取消全屏点击
