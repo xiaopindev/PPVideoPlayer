@@ -18,8 +18,7 @@
 @property (nonatomic, strong) OCBarrageManager *barrageManager;
 
 //播放器核心（必须）
-@property (nonatomic, strong) UIView *playerView;
-@property (nonatomic,strong) id<NELivePlayer> liveplayer;
+@property (nonatomic, strong) NELivePlayerController *player; //播放器sdk
 @property (nonatomic, strong) dispatch_source_t timer;
 
 //播放器属性（只针对点播）
@@ -84,27 +83,35 @@
 @implementation PPVideoPlayerView
 
 #pragma mark - 懒加载
--(id<NELivePlayer>)liveplayer{
-    if(!_liveplayer){
-        self.playerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
-        _liveplayer = [[NELivePlayerController alloc] initWithContentURL:self.playUrl];
-        if (_liveplayer == nil) { // 返回空则表示初始化失败
-            NSLog(@"player initilize failed, please tay again!");
+
+- (NELivePlayerController *)player{
+    if(!_player){
+        [NELivePlayerController setLogLevel:NELP_LOG_VERBOSE];
+        
+        NSError *error = nil;
+        _player = [[NELivePlayerController alloc] initWithContentURL:self.playUrl error:&error];
+        if (_player == nil) {
+            NSLog(@"player initilize failed, please tay again.error = [%@]!", error);
         }
-        _liveplayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        _liveplayer.view.frame = self.playerView.bounds;
-        [_liveplayer setScalingMode:NELPMovieScalingModeFill];
-        [_liveplayer setHardwareDecoder:YES]; //设置解码模式，是否开启硬件解码
-        [_liveplayer setShouldAutoplay:NO]; //设置prepareToPlay完成后是否自动播放
-        [_liveplayer setPauseInBackground:NO]; //设置切入后台时的状态，暂停还是继续播放
+        _player.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _player.view.frame = self.bounds;
+        [self addSubview:_player.view];
+        [self sendSubviewToBack:_player.view];
         
-        NSLog(@"Version = %@", [_liveplayer getSDKVersion]);
-        [_liveplayer isLogToFile:YES];
+        self.autoresizesSubviews = YES;
         
-        [self addSubview:_liveplayer.view];
-        [self sendSubviewToBack:_liveplayer.view];
+        if (self.isLive) {
+            [_player setBufferStrategy:NELPLowDelay]; // 直播低延时模式
+        } else {
+            [_player setBufferStrategy:NELPAntiJitter]; // 点播抗抖动
+        }
+        [_player setScalingMode:NELPMovieScalingModeNone]; // 设置画面显示模式，默认原始大小
+        [_player setShouldAutoplay:NO]; // 设置prepareToPlay完成后是否自动播放
+        [_player setHardwareDecoder:YES]; // 设置解码模式，是否开启硬件解码
+        [_player setPauseInBackground:YES]; // 设置切入后台时的状态，暂停还是继续播放
+        [_player setPlaybackTimeout:15 *1000]; // 设置拉流超时时间
     }
-    return _liveplayer;
+    return _player;
 }
 
 #pragma mark - ---头
@@ -121,7 +128,7 @@
     if(!_btnBack){
         _btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
         _btnBack.frame = CGRectMake(10, 5, 30, 30);
-        [_btnBack setImage:[UIImage imageNamed:@"PPKit_vp_back"] forState:UIControlStateNormal];
+        [_btnBack setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_back"] forState:UIControlStateNormal];
         [_btnBack addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnBack;
@@ -140,8 +147,8 @@
 -(UIButton *)btnShare{
     if(!_btnShare){
         _btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnShare.frame = CGRectMake(0, 5, 30, 30);
-        [_btnShare setImage:[UIImage imageNamed:@"PPKit_vp_share"] forState:UIControlStateNormal];
+        _btnShare.frame = CGRectMake(0, 10, 20, 20);
+        [_btnShare setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_share"] forState:UIControlStateNormal];
         [_btnShare addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnShare;
@@ -150,8 +157,8 @@
 -(UIButton *)btnFavorite{
     if(!_btnFavorite){
         _btnFavorite = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnFavorite.frame = CGRectMake(0, 5, 30, 30);
-        [_btnFavorite setImage:[UIImage imageNamed:@"PPKit_vp_favorite_empty"] forState:UIControlStateNormal];
+        _btnFavorite.frame = CGRectMake(0, 10, 20, 20);
+        [_btnFavorite setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_favorite_empty"] forState:UIControlStateNormal];
         [_btnFavorite addTarget:self action:@selector(favoriteAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnFavorite;
@@ -160,8 +167,8 @@
 -(UIButton *)btnDownload{
     if(!_btnDownload){
         _btnDownload = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnDownload.frame = CGRectMake(0, 5, 30, 30);
-        [_btnDownload setImage:[UIImage imageNamed:@"PPKit_vp_download"] forState:UIControlStateNormal];
+        _btnDownload.frame = CGRectMake(0, 10, 20, 20);
+        [_btnDownload setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_download"] forState:UIControlStateNormal];
         [_btnDownload addTarget:self action:@selector(downloadAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnDownload;
@@ -171,7 +178,7 @@
 -(UIButton *)btnReplay{
     if(!_btnReplay){
         _btnReplay = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_btnReplay setImage:[UIImage imageNamed:@"PPKit_vp_play_big"] forState:UIControlStateNormal];
+        [_btnReplay setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_play_big"] forState:UIControlStateNormal];
         [_btnReplay addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
     }
     pX = (self.bounds.size.width - 55)/2;
@@ -194,7 +201,7 @@
 - (UIImageView *)alertImageView{
     if(!_alertImageView){
         _alertImageView = [[UIImageView alloc] initWithFrame:CGRectMake(pX, 0, 50, 50)];
-        _alertImageView.image = [UIImage imageNamed:@"PPKit_vp_logo"];
+        _alertImageView.image = [self imagesNamedFromCustomBundle:@"PPKit_vp_logo"];
         _alertImageView.contentMode = UIViewContentModeScaleToFill;
     }
     pX = (self.alertView.frame.size.width - 50)/2;
@@ -290,8 +297,8 @@
 -(UIButton *)btnPlayOrPause{
     if(!_btnPlayOrPause){
         _btnPlayOrPause = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnPlayOrPause.frame = CGRectMake(5, 5, 30, 30);
-        [_btnPlayOrPause setImage:[UIImage imageNamed:@"PPKit_vp_play"] forState:UIControlStateNormal];
+        _btnPlayOrPause.frame = CGRectMake(0, 10, 20, 20);
+        [_btnPlayOrPause setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_play"] forState:UIControlStateNormal];
         [_btnPlayOrPause addTarget:self action:@selector(playOrPauseAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnPlayOrPause;
@@ -300,8 +307,8 @@
 -(UIButton *)btnNextVideo{
     if(!_btnNextVideo){
         _btnNextVideo = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnNextVideo.frame = CGRectMake(0, 5, 30, 30);
-        [_btnNextVideo setImage:[UIImage imageNamed:@"PPKit_vp_next"] forState:UIControlStateNormal];
+        _btnNextVideo.frame = CGRectMake(0, 10, 20, 20);
+        [_btnNextVideo setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_next"] forState:UIControlStateNormal];
         [_btnNextVideo addTarget:self action:@selector(nextVideoAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnNextVideo;
@@ -336,7 +343,7 @@
         _playProgress.maximumTrackTintColor = [UIColor clearColor];
         //设置播放进度颜色
         _playProgress.minimumTrackTintColor = [UIColor orangeColor];
-        [_playProgress setThumbImage:[UIImage imageNamed:@"PPKit_vp_slider"] forState:UIControlStateNormal];
+        [_playProgress setThumbImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_slider"] forState:UIControlStateNormal];
         
         [_playProgress addTarget:self action:@selector(playerSliderTouchDown:) forControlEvents:UIControlEventTouchDown];
         [_playProgress addTarget:self action:@selector(playerSliderTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -382,8 +389,8 @@
 -(UIButton *)btnVideoList{
     if(!_btnVideoList){
         _btnVideoList = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnVideoList.frame = CGRectMake(0, 5, 50, 30);
-        [_btnVideoList setImage:[UIImage imageNamed:@"PPKit_vp_list"] forState:UIControlStateNormal];
+        _btnVideoList.frame = CGRectMake(0, 10, 20, 20);
+        [_btnVideoList setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_list"] forState:UIControlStateNormal];
         [_btnVideoList addTarget:self action:@selector(videoListAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnVideoList;
@@ -392,8 +399,8 @@
 -(UIButton *)btnToTV{
     if(!_btnToTV){
         _btnToTV = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnToTV.frame = CGRectMake(0, 5, 30, 30);
-        [_btnToTV setImage:[UIImage imageNamed:@"PPKit_vp_toTV"] forState:UIControlStateNormal];
+        _btnToTV.frame = CGRectMake(0, 10, 20, 20);
+        [_btnToTV setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_toTV"] forState:UIControlStateNormal];
         [_btnToTV addTarget:self action:@selector(toTVAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnToTV;
@@ -402,8 +409,8 @@
 -(UIButton *)btnBarrage{
     if(!_btnBarrage){
         _btnBarrage = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnBarrage.frame = CGRectMake(0, 5, 30, 30);
-        [_btnBarrage setImage:[UIImage imageNamed:@"PPKit_vp_dan_1"] forState:UIControlStateNormal];
+        _btnBarrage.frame = CGRectMake(0, 10, 20, 20);
+        [_btnBarrage setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_dan_1"] forState:UIControlStateNormal];
         [_btnBarrage addTarget:self action:@selector(barrageAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnBarrage;
@@ -412,8 +419,8 @@
 -(UIButton *)btnFullScreen{
     if(!_btnFullScreen){
         _btnFullScreen = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnFullScreen.frame = CGRectMake(0, 5, 30, 30);
-        [_btnFullScreen setImage:[UIImage imageNamed:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
+        _btnFullScreen.frame = CGRectMake(0, 10, 20, 20);
+        [_btnFullScreen setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
         [_btnFullScreen addTarget:self action:@selector(fullScreenAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnFullScreen;
@@ -486,26 +493,26 @@
             [self hideAlertViews];
             
             //播放时，显示未暂停按钮
-            [self.btnPlayOrPause setImage:[UIImage imageNamed:@"PPKit_vp_pause"] forState:UIControlStateNormal];
+            [self.btnPlayOrPause setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_pause"] forState:UIControlStateNormal];
             break;
         }
         case PPVideoPlayerStatusPause:{
             NSLog(@"PPVideoPlayerStatusPause");
             if(!self.isAlerting){
-                [self.btnReplay setImage:[UIImage imageNamed:@"PPKit_vp_play_big"] forState:UIControlStateNormal];
+                [self.btnReplay setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_play_big"] forState:UIControlStateNormal];
                 [self addSubview:self.btnReplay];
             }
-            [self.btnPlayOrPause setImage:[UIImage imageNamed:@"PPKit_vp_play"] forState:UIControlStateNormal];
+            [self.btnPlayOrPause setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_play"] forState:UIControlStateNormal];
             break;
         }
         case PPVideoPlayerStatusStop:{
             NSLog(@"PPVideoPlayerStatusStop");
-            [self.btnPlayOrPause setImage:[UIImage imageNamed:@"PPKit_vp_play"] forState:UIControlStateNormal];
+            [self.btnPlayOrPause setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_play"] forState:UIControlStateNormal];
             break;
         }
         case PPVideoPlayerStatusSeeking:{
             NSLog(@"PPVideoPlayerStatusSeeking");
-            [self.btnPlayOrPause setImage:[UIImage imageNamed:@"PPKit_vp_play"] forState:UIControlStateNormal];
+            [self.btnPlayOrPause setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_play"] forState:UIControlStateNormal];
             break;
         }
         default:
@@ -529,6 +536,7 @@
     [self reloadTopControlViews];
     [self reloadCenterControlViews];
     [self reloadBottomControlViews];
+
     //测试
 //    self.btnBack.backgroundColor =[UIColor redColor];
 //    self.labTitle.backgroundColor = [UIColor orangeColor];
@@ -539,20 +547,21 @@
 //
 //    self.btnPlayOrPause.backgroundColor = [UIColor redColor];
 //    self.btnNextVideo.backgroundColor = [UIColor greenColor];
-//    
+//
 //    self.labStartTime.backgroundColor = [UIColor redColor];
 //    self.labLiving.backgroundColor = [UIColor orangeColor];
 //    self.labEndTime.backgroundColor = [UIColor redColor];
+//    self.btnBarrage.backgroundColor = [UIColor redColor];
 //    self.btnFullScreen.backgroundColor = [UIColor redColor];
 //    self.btnVideoList.backgroundColor = [UIColor greenColor];
 //    self.btnQuality.backgroundColor = [UIColor blueColor];
 }
 
 - (void)setCurrentTime:(NSTimeInterval)currentTime{
-    if(self.liveplayer && self.playUrl){
+    if(self.player && self.playUrl){
         //播放器跳转到指定时间点
         //NSLog(@"Seek Time:%f",currentTime);
-        [self.liveplayer setCurrentPlaybackTime:currentTime];
+        [self.player setCurrentPlaybackTime:currentTime];
     }
 }
 
@@ -618,12 +627,12 @@
 -(void)prepareToPlay{
     
     if(self.isLive){
-        [self.liveplayer setBufferStrategy:NELPFluent]; //直播流畅模式
+        [self.player setBufferStrategy:NELPFluent]; //直播流畅模式
     }else{
-        [self.liveplayer setBufferStrategy:NELPAntiJitter];//点播模式
+        [self.player setBufferStrategy:NELPAntiJitter];//点播模式
     }
 #if 1
-    [self.liveplayer prepareToPlay]; //初始化视频文件
+    [self.player prepareToPlay]; //初始化视频文件
     
     //显示加载中
     if(self.controlStyle != PPVideoPlayerControlStyleNotWifi){
@@ -633,7 +642,7 @@
 #else
     //模拟测试提示
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.liveplayer prepareToPlay]; //初始化视频文件
+            [self.player prepareToPlay]; //初始化视频文件
     });
     if(self.controlStyle != PPVideoPlayerControlStyleNotWifi){
         [self showLoading];
@@ -655,12 +664,12 @@
 
 //播放
 - (void)play{
-    if(self.liveplayer && self.playUrl){
+    if(self.player && self.playUrl){
         //30秒后检测是否播放状态
         [self performSelector:@selector(checkPlayerStatus) withObject:nil afterDelay:30];
         
         //播放
-        [self.liveplayer play];
+        [self.player play];
         
         // 监听播放进度
         /*
@@ -682,15 +691,15 @@
         dispatch_source_set_event_handler(_timer, ^{
             if(!_isLive){
                 // 获取当前播放进度
-                NSTimeInterval currentSecond = weakSelf.liveplayer.currentPlaybackTime;
+                NSTimeInterval currentSecond = weakSelf.player.currentPlaybackTime;
                 
                 // 获取当前缓存进度
-                NSTimeInterval currentCache = weakSelf.liveplayer.playableDuration;
+                NSTimeInterval currentCache = weakSelf.player.playableDuration;
                 
                 // 获取视频总长度
-                NSTimeInterval totalSecond = weakSelf.liveplayer.duration;
+                NSTimeInterval totalSecond = weakSelf.player.duration;
                 
-                //NSLog(@"当前播放进度：%f/%f/%f",currentSecond,currentCache,totalSecond);
+                NSLog(@"当前播放进度：%f/%f/%f",currentSecond,currentCache,totalSecond);
                 
                 //改变播放时间和进度的状态
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -722,9 +731,9 @@
 
 //暂停
 - (void)pause{
-    if(self.liveplayer && self.playUrl){
+    if(self.player && self.playUrl){
         //播放器暂停
-        [self.liveplayer pause];
+        [self.player pause];
         
         //销毁定时器
         if(_timer){
@@ -742,9 +751,9 @@
 
 - (void)stop{
     //退出播放并释放相关资源
-    [self.liveplayer shutdown];
-    [self.liveplayer.view removeFromSuperview];
-    self.liveplayer = nil;
+    [self.player shutdown]; // 退出播放并释放相关资源
+    [self.player.view removeFromSuperview];
+    self.player = nil;
     
     //销毁定时器
     if(_timer){
@@ -825,6 +834,13 @@
     }
 }
 
+- (UIImage *)imagesNamedFromCustomBundle:(NSString *)imgName{
+    NSString *bundlePath = [[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"PPVideoPlayer.bundle"];
+    NSBundle *bundle = [NSBundle bundleWithPath:bundlePath];
+    NSString *img_path = [bundle pathForResource:imgName ofType:@"png"];
+    return [UIImage imageWithContentsOfFile:img_path];
+}
+
 #pragma mark - UI展示
 /**
  重新加载顶部控件视图
@@ -843,40 +859,41 @@
     self.topView.frame = CGRectMake(0, 0, self.bounds.size.width, 40);
     [self.topView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
+    CGFloat iconSize = 26,iconTop = 7;
     if(self.controlStyle == PPVideoPlayerControlStyleFullScreen){
         //全屏模式：返回按钮，标题，分享按钮，收藏按钮，下载按钮
         pX = 10;
         [self addSubview:self.btnBack];
-        self.btnBack.frame = CGRectMake(pX, 5, 30, 30);
+        self.btnBack.frame = CGRectMake(pX, 0, 40, 40);
         CGFloat tmpX = pX + self.btnBack.frame.size.width + 5;
         
         BOOL hasRightBtn = NO;
-        pX = self.topView.frame.size.width - 30 - 5;
+        pX = self.topView.frame.size.width - iconSize - 5;
         if(self.showDownButton && !self.isLive){
             hasRightBtn = YES;
             [self.topView addSubview:self.btnDownload];
-            self.btnDownload.frame = CGRectMake(pX, 5, 30, 30);
-            pX = pX - 30 - 5;
+            self.btnDownload.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
+            pX = pX - iconSize - 5;
         }
         
         if(self.showFavoritesButton){
             hasRightBtn = YES;
             [self.topView addSubview:self.btnFavorite];
-            self.btnFavorite.frame = CGRectMake(pX, 5, 30, 30);
-            pX = pX - 30 - 5;
+            self.btnFavorite.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
+            pX = pX - iconSize - 5;
         }
         
         if(self.showShareButton){
             hasRightBtn = YES;
             [self.topView addSubview:self.btnShare];
-            self.btnShare.frame = CGRectMake(pX, 5, 30, 30);
-            pX = pX - 30 - 5;
+            self.btnShare.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
+            pX = pX - iconSize - 5;
         }
         
         if(!hasRightBtn){
             pX = self.topView.frame.size.width - 10;
         }else{
-            pX = pX + 30;
+            pX = pX + iconSize;
         }
         
         [self.topView addSubview:self.labTitle];
@@ -889,7 +906,7 @@
         pX = 10;
         if(self.showBackButton){
             [self addSubview:self.btnBack];
-            self.btnBack.frame = CGRectMake(pX, 5, 30, 30);
+            self.btnBack.frame = CGRectMake(pX, 0, 40, 40);
             pX = pX + self.btnBack.frame.size.width + 5;
         }
         [self.topView addSubview:self.labTitle];
@@ -907,9 +924,8 @@
 - (void)reloadCenterControlViews{
  
     //播放视图视图重置
-    if(_liveplayer){
-        self.playerView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-        self.liveplayer.view.frame = self.playerView.bounds;
+    if(_player){
+        self.player.view.frame = self.bounds;
     }
     
     //播放按钮
@@ -957,12 +973,13 @@
     [self.bottomView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     pHeight = self.bottomView.frame.size.height;
     
+    CGFloat iconSize = 26,iconTop = 7;
     if(self.controlStyle == PPVideoPlayerControlStyleFullScreen){
         //全屏模式:播放按钮，下一个视频按钮，直播标签，时间进度标签，进度条，质量播放按钮，播放列表按钮，投屏按钮，全屏按钮
         pX = 5;
         
         [self.bottomView addSubview:self.btnPlayOrPause];
-        self.btnPlayOrPause.frame = CGRectMake(5, 5, 30, 30);
+        self.btnPlayOrPause.frame = CGRectMake(5, iconTop, iconSize, iconSize);
         pX = pX + self.btnPlayOrPause.frame.size.width + 5;
         
         if(self.isLive){
@@ -971,24 +988,24 @@
             pHeight = self.bottomView.frame.size.height;
             self.labLiving.frame = CGRectMake(pX, 5, 100, 30);
             
-            pX = self.bottomView.frame.size.width - 30 - 5;
+            pX = self.bottomView.frame.size.width - iconSize - 5;
             if(self.showFullScreenButton){
                 [self.bottomView addSubview:self.btnFullScreen];
-                self.btnFullScreen.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnFullScreen.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnFullScreen.frame.size.width - 5;
                 
-                [self.btnFullScreen setImage:[UIImage imageNamed:@"PPKit_vp_smallscreen"] forState:UIControlStateNormal];
+                [self.btnFullScreen setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_smallscreen"] forState:UIControlStateNormal];
             }
             
             if(self.showBarrageButton){
                 [self.bottomView addSubview:self.btnBarrage];
-                self.btnBarrage.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnBarrage.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnBarrage.frame.size.width - 5;
             }
             
             if(self.showToTVButton){
                 [self.bottomView addSubview:self.btnToTV];
-                self.btnToTV.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnToTV.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnToTV.frame.size.width - 5;
             }
         }else{
@@ -996,7 +1013,7 @@
             CGFloat tmpX;
             if(self.showNextButton){
                 [self.bottomView addSubview:self.btnNextVideo];
-                self.btnNextVideo.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnNextVideo.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX + self.btnNextVideo.frame.size.width + 5;
             }
             
@@ -1005,40 +1022,40 @@
             tmpX = pX + self.labStartTime.frame.size.width;
             
             BOOL hasRightBtn = NO;
-            pX = self.bottomView.frame.size.width - 30 - 5;
+            pX = self.bottomView.frame.size.width - iconSize - 5;
             if(self.showFullScreenButton){
                 hasRightBtn = YES;
                 [self.bottomView addSubview:self.btnFullScreen];
-                self.btnFullScreen.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnFullScreen.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnFullScreen.frame.size.width - 5;
                 
-                [self.btnFullScreen setImage:[UIImage imageNamed:@"PPKit_vp_smallscreen"] forState:UIControlStateNormal];
+                [self.btnFullScreen setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_smallscreen"] forState:UIControlStateNormal];
             }
             
             if(self.showBarrageButton){
                 [self.bottomView addSubview:self.btnBarrage];
-                self.btnBarrage.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnBarrage.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnBarrage.frame.size.width - 5;
             }
             
             if(self.showToTVButton){
                 hasRightBtn = YES;
                 [self.bottomView addSubview:self.btnToTV];
-                self.btnToTV.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnToTV.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnToTV.frame.size.width - 5;
             }
             
             if(self.showListButton){
                 hasRightBtn = YES;
                 [self.bottomView addSubview:self.btnVideoList];
-                self.btnVideoList.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnVideoList.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnVideoList.frame.size.width - 5;
             }
             
             if(!hasRightBtn){
                 pX = self.bottomView.frame.size.width - 50 - 5;
             }else{
-                pX = pX - (50-30);
+                pX = pX - (50-iconSize);
             }
             
             [self.bottomView addSubview:self.labEndTime];
@@ -1055,7 +1072,7 @@
         pX = 5;
         
         [self.bottomView addSubview:self.btnPlayOrPause];
-        self.btnPlayOrPause.frame = CGRectMake(5, 5, 30, 30);
+        self.btnPlayOrPause.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
         pX = pX + self.btnPlayOrPause.frame.size.width + 5;
         
         if(self.isLive){
@@ -1064,24 +1081,24 @@
             pHeight = self.bottomView.frame.size.height;
             self.labLiving.frame = CGRectMake(pX, 5, 100, 30);
             
-            pX = self.bottomView.frame.size.width - 30 - 5;
+            pX = self.bottomView.frame.size.width - iconSize - 5;
             if(self.showFullScreenButton){
                 [self.bottomView addSubview:self.btnFullScreen];
-                self.btnFullScreen.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnFullScreen.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnFullScreen.frame.size.width - 5;
                 
-                [self.btnFullScreen setImage:[UIImage imageNamed:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
+                [self.btnFullScreen setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
             }
             
             if(self.showBarrageButton){
                 [self.bottomView addSubview:self.btnBarrage];
-                self.btnBarrage.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnBarrage.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnBarrage.frame.size.width - 5;
             }
             
             if(self.showToTVButton){
                 [self.bottomView addSubview:self.btnToTV];
-                self.btnToTV.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnToTV.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnToTV.frame.size.width - 5;
             }
         }else{
@@ -1089,7 +1106,7 @@
             CGFloat tmpX;
             if(self.showNextButton){
                 [self.bottomView addSubview:self.btnNextVideo];
-                self.btnNextVideo.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnNextVideo.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX + self.btnNextVideo.frame.size.width + 5;
             }
             
@@ -1098,26 +1115,26 @@
             tmpX = pX + self.labStartTime.frame.size.width;
             
             BOOL hasRightBtn = NO;
-            pX = self.bottomView.frame.size.width - 30 - 5;
+            pX = self.bottomView.frame.size.width - iconSize - 5;
             if(self.showFullScreenButton){
                 hasRightBtn = YES;
                 [self.bottomView addSubview:self.btnFullScreen];
-                self.btnFullScreen.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnFullScreen.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnFullScreen.frame.size.width - 5;
                 
-                [self.btnFullScreen setImage:[UIImage imageNamed:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
+                [self.btnFullScreen setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
             }
             
             if(self.showBarrageButton){
                 [self.bottomView addSubview:self.btnBarrage];
-                self.btnBarrage.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnBarrage.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnBarrage.frame.size.width - 5;
             }
             
             if(self.showToTVButton){
                 hasRightBtn = YES;
                 [self.bottomView addSubview:self.btnToTV];
-                self.btnToTV.frame = CGRectMake(pX, 5, 30, 30);
+                self.btnToTV.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnToTV.frame.size.width - 5;
             }
             
@@ -1205,7 +1222,9 @@
 #if 1
     NSMutableArray *loadingImages = [NSMutableArray array];
     for (int i = 1; i<=8; i++) {
-        [loadingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"PPKit_vp_loading_%d",i]]];
+        NSString *imageName = [NSString stringWithFormat:@"PPKit_vp_loading_%d",i];
+        UIImage *image = [self imagesNamedFromCustomBundle:imageName];
+        [loadingImages addObject:image];
     }
     self.alertImageView.animationImages = loadingImages;
     self.alertImageView.animationDuration = 2.0f;
@@ -1223,8 +1242,8 @@
     self.isAlerting = YES;
     [self addSubview:self.alertView];
     NSMutableArray *loadingImages = [NSMutableArray array];
-    for (int i = 0; i<=8; i++) {
-        [loadingImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"PPKit_vp_loading_%d",i]]];
+    for (int i = 1; i<=8; i++) {
+        [loadingImages addObject:[self imagesNamedFromCustomBundle:[NSString stringWithFormat:@"PPKit_vp_loading_%d",i]]];
     }
     self.alertImageView.animationImages = loadingImages;
     self.alertImageView.animationDuration = 2.0f;
@@ -1238,7 +1257,7 @@
 - (void)showNetworkFaild{
     self.isAlerting = YES;
     [self addSubview:self.alertView];
-    self.alertImageView.image = [UIImage imageNamed:@"PPKit_vp_netfailed"];
+    self.alertImageView.image = [self imagesNamedFromCustomBundle:@"PPKit_vp_netfailed"];
     self.alertLabel.text = @"网络连接失败，请重试！";
 }
 
@@ -1246,7 +1265,7 @@
 - (void)showNetworkStalled{
     self.isAlerting = YES;
     [self addSubview:self.alertView];
-    self.alertImageView.image = [UIImage imageNamed:@"PPKit_vp_netstalled"];
+    self.alertImageView.image = [self imagesNamedFromCustomBundle:@"PPKit_vp_netstalled"];
     self.alertLabel.text = @"网络不太好，请稍候...";
 }
 
@@ -1254,7 +1273,7 @@
 - (void)showPlayFaild{
     self.isAlerting = YES;
     [self addSubview:self.alertView];
-    self.alertImageView.image = [UIImage imageNamed:@"PPKit_vp_netfailed"];
+    self.alertImageView.image = [self imagesNamedFromCustomBundle:@"PPKit_vp_netfailed"];
     self.alertLabel.text = @"播放发生错误导致结束，请重试！";
 }
 
@@ -1406,7 +1425,7 @@
        NSLog(@"右移动");
        CGFloat moveOffSet = current.y - previous.y;
         if(moveOffSet > 0){
-           // [self.liveplayer setVolume:<#(float)#>];
+           // [self.player setVolume:<#(float)#>];
         }else{
             
         }
@@ -1508,10 +1527,10 @@
 - (void)barrageAction{
     if(self.isBarrageClose){
         [self startBarrage];
-        [_btnBarrage setImage:[UIImage imageNamed:@"PPKit_vp_dan_1"] forState:UIControlStateNormal];
+        [_btnBarrage setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_dan_1"] forState:UIControlStateNormal];
     }else{
         [self stopBarrage];
-        [_btnBarrage setImage:[UIImage imageNamed:@"PPKit_vp_dan_0"] forState:UIControlStateNormal];
+        [_btnBarrage setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_dan_0"] forState:UIControlStateNormal];
     }
     self.isBarrageClose = !self.isBarrageClose;
     if(self.delegate && [self.delegate respondsToSelector:@selector(PPVideoPlayerView:barrageAction:)]){
@@ -1559,16 +1578,16 @@
     NSLog(@"%s",__FUNCTION__);
     
     //移除所有播放消息通知
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerDidPreparedToPlayNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerLoadStateChangedNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerPlaybackFinishedNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstVideoDisplayedNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstAudioDisplayedNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerVideoParseErrorNotification object:_liveplayer];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerDidPreparedToPlayNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerLoadStateChangedNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerPlaybackFinishedNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstVideoDisplayedNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstAudioDisplayedNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerVideoParseErrorNotification object:_player];
     if(!self.isLive){
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerMoviePlayerSeekCompletedNotification object:_liveplayer];
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerMoviePlayerSeekCompletedNotification object:_player];
     }
-    //[[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerReleaseSueecssNotification object:_liveplayer];
+    //[[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerReleaseSueecssNotification object:_player];
 }
 
 - (void)addNotifyObservers{
@@ -1578,48 +1597,48 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerDidPreparedToPlay:)
                                                  name:NELivePlayerDidPreparedToPlayNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NeLivePlayerloadStateChanged:)
                                                  name:NELivePlayerLoadStateChangedNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerPlayBackFinished:)
                                                  name:NELivePlayerPlaybackFinishedNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerPlaybackStateChanged:)
                                                  name:NELivePlayerPlaybackStateChangedNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerFirstVideoDisplayed:)
                                                  name:NELivePlayerFirstVideoDisplayedNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerFirstAudioDisplayed:)
                                                  name:NELivePlayerFirstAudioDisplayedNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     if(!self.isLive){
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(NELivePlayerMoviePlayerSeekCompleted:)
                                                      name:NELivePlayerMoviePlayerSeekCompletedNotification
-                                                   object:_liveplayer];
+                                                   object:_player];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerReleaseSuccess:)
                                                  name:NELivePlayerReleaseSueecssNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerVideoParseError:)
                                                  name:NELivePlayerVideoParseErrorNotification
-                                               object:_liveplayer];
+                                               object:_player];
 }
 
 //调用prepareToPlay后，播放器初始化视频文件完成后的消息通知
@@ -1627,15 +1646,23 @@
 {
     //add some methods
     NSLog(@"NELivePlayerDidPreparedToPlay");
+    
+    //获取视频信息，主要是为了告诉界面的可视范围，方便字幕显示
+    NELPVideoInfo info;
+    memset(&info, 0, sizeof(NELPVideoInfo));
+    [_player getVideoInfo:&info];
+    
     if(self.isWifiNetwork && self.isAutoPlay){
         [self play]; //开始播放
+    }else{
+        [self hideAlertViews];
     }
 }
 
 //播放器加载状态发生改变时的消息通知
 - (void)NeLivePlayerloadStateChanged:(NSNotification*)notification
 {
-    NELPMovieLoadState nelpLoadState = _liveplayer.loadState;
+    NELPMovieLoadState nelpLoadState = _player.loadState;
 
     if (nelpLoadState == NELPMovieLoadStatePlaythroughOK)
     {
@@ -1666,7 +1693,7 @@
             }else{
                 //点播结束，回到播放0点位置，截取1秒图显示
                 NSLog(@"点播结束");
-                [self.liveplayer setCurrentPlaybackTime:0];
+                [self.player setCurrentPlaybackTime:0];
                 self.playProgress.value = 0;
                 self.labStartTime.text = @"00:00";
                 
@@ -1674,7 +1701,7 @@
                 [self showScreenshot];
                 
                 //显示重播按钮
-                [self.btnReplay setImage:[UIImage imageNamed:@"PPKit_vp_replay"] forState:UIControlStateNormal];
+                [self.btnReplay setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_replay"] forState:UIControlStateNormal];
                 [self addSubview:self.btnReplay];
             }
             
@@ -1717,7 +1744,7 @@
 {
     [self removeLiveOverView];
     [self removeLiveNotStartedView];
-    switch (self.liveplayer.playbackState) {
+    switch (self.player.playbackState) {
         case NELPMoviePlaybackStatePaused:{
             self.playStatus = PPVideoPlayerStatusPause;
             break;
@@ -1783,7 +1810,7 @@
         dispatch_source_cancel(_timer);
     }
     
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerReleaseSueecssNotification object:_liveplayer];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerReleaseSueecssNotification object:_player];
     
     [self stopBarrage];
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56A1E72F998A9B4DF2A729AE /* libPods-PPVideoPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 491A82F961C3941D0869C800 /* libPods-PPVideoPlayer.a */; };
+		5A6530D5212AE6E60003DE7A /* PPVideoPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5A6530D4212AE6E60003DE7A /* PPVideoPlayer.bundle */; };
 		5AB64F1920E2459E0098B89E /* OCBarrageTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F0B20E2459E0098B89E /* OCBarrageTextCell.m */; };
 		5AB64F1A20E2459E0098B89E /* OCBarrageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F0C20E2459E0098B89E /* OCBarrageDescriptor.m */; };
 		5AB64F1B20E2459E0098B89E /* OCBarrageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F0D20E2459E0098B89E /* OCBarrageCell.m */; };
@@ -15,51 +17,6 @@
 		5AB64F1E20E2459E0098B89E /* OCBarrageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F1120E2459E0098B89E /* OCBarrageManager.m */; };
 		5AB64F1F20E2459E0098B89E /* OCBarrageTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F1220E2459E0098B89E /* OCBarrageTrackInfo.m */; };
 		5AB64F2020E2459E0098B89E /* OCBarrageRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F1620E2459E0098B89E /* OCBarrageRenderView.m */; };
-		5AB64F6020E374A70098B89E /* PPKit_vp_dan_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3220E374A70098B89E /* PPKit_vp_dan_1@3x.png */; };
-		5AB64F6120E374A70098B89E /* PPKit_vp_favorite_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3320E374A70098B89E /* PPKit_vp_favorite_empty@2x.png */; };
-		5AB64F6220E374A70098B89E /* PPKit_vp_loading_6@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3520E374A70098B89E /* PPKit_vp_loading_6@3x.png */; };
-		5AB64F6320E374A70098B89E /* PPKit_vp_loading_8@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3620E374A70098B89E /* PPKit_vp_loading_8@3x.png */; };
-		5AB64F6420E374A70098B89E /* PPKit_vp_loading_4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3720E374A70098B89E /* PPKit_vp_loading_4@3x.png */; };
-		5AB64F6520E374A70098B89E /* PPKit_vp_loading_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3820E374A70098B89E /* PPKit_vp_loading_2@3x.png */; };
-		5AB64F6620E374A70098B89E /* PPKit_vp_loading_7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3920E374A70098B89E /* PPKit_vp_loading_7@3x.png */; };
-		5AB64F6720E374A70098B89E /* PPKit_vp_loading_5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3A20E374A70098B89E /* PPKit_vp_loading_5@3x.png */; };
-		5AB64F6820E374A70098B89E /* PPKit_vp_loading_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3B20E374A70098B89E /* PPKit_vp_loading_1@3x.png */; };
-		5AB64F6920E374A70098B89E /* PPKit_vp_loading_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3C20E374A70098B89E /* PPKit_vp_loading_3@3x.png */; };
-		5AB64F6A20E374A70098B89E /* PPKit_vp_next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3D20E374A70098B89E /* PPKit_vp_next@2x.png */; };
-		5AB64F6B20E374A70098B89E /* PPKit_vp_dan_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3E20E374A70098B89E /* PPKit_vp_dan_1@2x.png */; };
-		5AB64F6C20E374A70098B89E /* PPKit_vp_play2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F3F20E374A70098B89E /* PPKit_vp_play2@3x.png */; };
-		5AB64F6D20E374A70098B89E /* PPKit_vp_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4020E374A70098B89E /* PPKit_vp_more@2x.png */; };
-		5AB64F6E20E374A70098B89E /* PPKit_vp_fullscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4120E374A70098B89E /* PPKit_vp_fullscreen@2x.png */; };
-		5AB64F6F20E374A70098B89E /* PPKit_vp_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4220E374A70098B89E /* PPKit_vp_logo@2x.png */; };
-		5AB64F7020E374A70098B89E /* PPKit_vp_pause_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4320E374A70098B89E /* PPKit_vp_pause_big@2x.png */; };
-		5AB64F7120E374A70098B89E /* PPKit_vp_replay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4420E374A70098B89E /* PPKit_vp_replay@2x.png */; };
-		5AB64F7220E374A70098B89E /* PPKit_vp_play_big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4520E374A70098B89E /* PPKit_vp_play_big@2x.png */; };
-		5AB64F7320E374A70098B89E /* PPKit_vp_logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4620E374A70098B89E /* PPKit_vp_logo@3x.png */; };
-		5AB64F7420E374A70098B89E /* PPKit_vp_fullscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4720E374A70098B89E /* PPKit_vp_fullscreen@3x.png */; };
-		5AB64F7520E374A70098B89E /* PPKit_vp_toTV@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4820E374A70098B89E /* PPKit_vp_toTV@2x.png */; };
-		5AB64F7620E374A70098B89E /* PPKit_vp_smallscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4920E374A70098B89E /* PPKit_vp_smallscreen@3x.png */; };
-		5AB64F7720E374A70098B89E /* PPKit_vp_pause2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4A20E374A70098B89E /* PPKit_vp_pause2@3x.png */; };
-		5AB64F7820E374A70098B89E /* PPKit_vp_dan_0@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4B20E374A70098B89E /* PPKit_vp_dan_0@3x.png */; };
-		5AB64F7920E374A70098B89E /* PPKit_vp_fastforward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4C20E374A70098B89E /* PPKit_vp_fastforward@2x.png */; };
-		5AB64F7A20E374A70098B89E /* PPKit_vp_rewind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4D20E374A70098B89E /* PPKit_vp_rewind@2x.png */; };
-		5AB64F7B20E374A70098B89E /* PPKit_vp_netfailed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4E20E374A70098B89E /* PPKit_vp_netfailed@2x.png */; };
-		5AB64F7C20E374A70098B89E /* PPKit_vp_netfailed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F4F20E374A70098B89E /* PPKit_vp_netfailed@3x.png */; };
-		5AB64F7D20E374A70098B89E /* PPKit_vp_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5020E374A70098B89E /* PPKit_vp_list@2x.png */; };
-		5AB64F7E20E374A70098B89E /* PPKit_vp_slider@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5120E374A70098B89E /* PPKit_vp_slider@2x.png */; };
-		5AB64F7F20E374A70098B89E /* PPKit_vp_dan_0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5220E374A70098B89E /* PPKit_vp_dan_0@2x.png */; };
-		5AB64F8020E374A70098B89E /* PPKit_vp_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5320E374A70098B89E /* PPKit_vp_share@2x.png */; };
-		5AB64F8120E374A70098B89E /* PPKit_vp_smallscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5420E374A70098B89E /* PPKit_vp_smallscreen@2x.png */; };
-		5AB64F8220E374A70098B89E /* PPKit_vp_netstalled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5520E374A70098B89E /* PPKit_vp_netstalled@3x.png */; };
-		5AB64F8320E374A70098B89E /* PPKit_vp_download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5620E374A70098B89E /* PPKit_vp_download@2x.png */; };
-		5AB64F8420E374A70098B89E /* PPKit_vp_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5720E374A70098B89E /* PPKit_vp_play@2x.png */; };
-		5AB64F8520E374A70098B89E /* PPKit_vp_pause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5820E374A70098B89E /* PPKit_vp_pause@3x.png */; };
-		5AB64F8620E374A70098B89E /* PPKit_vp_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5920E374A70098B89E /* PPKit_vp_back@2x.png */; };
-		5AB64F8720E374A70098B89E /* PPKit_vp_pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5A20E374A70098B89E /* PPKit_vp_pause@2x.png */; };
-		5AB64F8820E374A70098B89E /* PPKit_vp_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5B20E374A70098B89E /* PPKit_vp_play@3x.png */; };
-		5AB64F8920E374A70098B89E /* PPKit_vp_slider2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5C20E374A70098B89E /* PPKit_vp_slider2@2x.png */; };
-		5AB64F8A20E374A70098B89E /* PPKit_vp_netstalled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5D20E374A70098B89E /* PPKit_vp_netstalled@2x.png */; };
-		5AB64F8B20E374A70098B89E /* PPKit_vp_favorite_solid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5E20E374A70098B89E /* PPKit_vp_favorite_solid@2x.png */; };
-		5AB64F8C20E374A70098B89E /* PPKit_vp_previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB64F5F20E374A70098B89E /* PPKit_vp_previous@2x.png */; };
 		7244636A1E8B6A2700A03059 /* cdvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 724463691E8B6A2700A03059 /* cdvideo.mp4 */; };
 		728B901B1E77F05A00E30C61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B901A1E77F05A00E30C61 /* main.m */; };
 		728B901E1E77F05A00E30C61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B901D1E77F05A00E30C61 /* AppDelegate.m */; };
@@ -67,10 +24,6 @@
 		728B90241E77F05A00E30C61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 728B90221E77F05A00E30C61 /* Main.storyboard */; };
 		728B90261E77F05A00E30C61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 728B90251E77F05A00E30C61 /* Assets.xcassets */; };
 		728B90291E77F05A00E30C61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 728B90271E77F05A00E30C61 /* LaunchScreen.storyboard */; };
-		728B904A1E77F23000E30C61 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 728B90461E77F23000E30C61 /* libcrypto.a */; };
-		728B904B1E77F23000E30C61 /* libNELivePlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 728B90471E77F23000E30C61 /* libNELivePlayer.a */; };
-		728B904C1E77F23000E30C61 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 728B90481E77F23000E30C61 /* libssl.a */; };
-		728B904D1E77F23000E30C61 /* ReleaseNote.md in Sources */ = {isa = PBXBuildFile; fileRef = 728B90491E77F23000E30C61 /* ReleaseNote.md */; };
 		728B90981E77F25400E30C61 /* PPVideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B90741E77F25400E30C61 /* PPVideoPlayerView.m */; };
 		728B909E1E77F3B700E30C61 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B909D1E77F3B700E30C61 /* Demo1ViewController.m */; };
 		728B90A11E77F3BF00E30C61 /* Demo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B90A01E77F3BF00E30C61 /* Demo2ViewController.m */; };
@@ -95,6 +48,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		491A82F961C3941D0869C800 /* libPods-PPVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PPVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E941C5E0009BB152505D996 /* Pods-PPVideoPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PPVideoPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer.debug.xcconfig"; sourceTree = "<group>"; };
+		5A6530D4212AE6E60003DE7A /* PPVideoPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPVideoPlayer.bundle; sourceTree = "<group>"; };
 		5AB64F0720E2459E0098B89E /* CALayer+OCBarrage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+OCBarrage.h"; sourceTree = "<group>"; };
 		5AB64F0820E2459E0098B89E /* OCBarrageTextDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCBarrageTextDescriptor.h; sourceTree = "<group>"; };
 		5AB64F0920E2459E0098B89E /* OCBarrageTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCBarrageTrackInfo.h; sourceTree = "<group>"; };
@@ -113,51 +69,6 @@
 		5AB64F1620E2459E0098B89E /* OCBarrageRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCBarrageRenderView.m; sourceTree = "<group>"; };
 		5AB64F1720E2459E0098B89E /* OCBarrageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCBarrageCell.h; sourceTree = "<group>"; };
 		5AB64F1820E2459E0098B89E /* OCBarrageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCBarrageDescriptor.h; sourceTree = "<group>"; };
-		5AB64F3220E374A70098B89E /* PPKit_vp_dan_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_dan_1@3x.png"; sourceTree = "<group>"; };
-		5AB64F3320E374A70098B89E /* PPKit_vp_favorite_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_favorite_empty@2x.png"; sourceTree = "<group>"; };
-		5AB64F3520E374A70098B89E /* PPKit_vp_loading_6@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_loading_6@3x.png"; sourceTree = "<group>"; };
-		5AB64F3620E374A70098B89E /* PPKit_vp_loading_8@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_loading_8@3x.png"; sourceTree = "<group>"; };
-		5AB64F3720E374A70098B89E /* PPKit_vp_loading_4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_loading_4@3x.png"; sourceTree = "<group>"; };
-		5AB64F3820E374A70098B89E /* PPKit_vp_loading_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_loading_2@3x.png"; sourceTree = "<group>"; };
-		5AB64F3920E374A70098B89E /* PPKit_vp_loading_7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_loading_7@3x.png"; sourceTree = "<group>"; };
-		5AB64F3A20E374A70098B89E /* PPKit_vp_loading_5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_loading_5@3x.png"; sourceTree = "<group>"; };
-		5AB64F3B20E374A70098B89E /* PPKit_vp_loading_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_loading_1@3x.png"; sourceTree = "<group>"; };
-		5AB64F3C20E374A70098B89E /* PPKit_vp_loading_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_loading_3@3x.png"; sourceTree = "<group>"; };
-		5AB64F3D20E374A70098B89E /* PPKit_vp_next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_next@2x.png"; sourceTree = "<group>"; };
-		5AB64F3E20E374A70098B89E /* PPKit_vp_dan_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_dan_1@2x.png"; sourceTree = "<group>"; };
-		5AB64F3F20E374A70098B89E /* PPKit_vp_play2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_play2@3x.png"; sourceTree = "<group>"; };
-		5AB64F4020E374A70098B89E /* PPKit_vp_more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_more@2x.png"; sourceTree = "<group>"; };
-		5AB64F4120E374A70098B89E /* PPKit_vp_fullscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_fullscreen@2x.png"; sourceTree = "<group>"; };
-		5AB64F4220E374A70098B89E /* PPKit_vp_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_logo@2x.png"; sourceTree = "<group>"; };
-		5AB64F4320E374A70098B89E /* PPKit_vp_pause_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_pause_big@2x.png"; sourceTree = "<group>"; };
-		5AB64F4420E374A70098B89E /* PPKit_vp_replay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_replay@2x.png"; sourceTree = "<group>"; };
-		5AB64F4520E374A70098B89E /* PPKit_vp_play_big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_play_big@2x.png"; sourceTree = "<group>"; };
-		5AB64F4620E374A70098B89E /* PPKit_vp_logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_logo@3x.png"; sourceTree = "<group>"; };
-		5AB64F4720E374A70098B89E /* PPKit_vp_fullscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_fullscreen@3x.png"; sourceTree = "<group>"; };
-		5AB64F4820E374A70098B89E /* PPKit_vp_toTV@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_toTV@2x.png"; sourceTree = "<group>"; };
-		5AB64F4920E374A70098B89E /* PPKit_vp_smallscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_smallscreen@3x.png"; sourceTree = "<group>"; };
-		5AB64F4A20E374A70098B89E /* PPKit_vp_pause2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_pause2@3x.png"; sourceTree = "<group>"; };
-		5AB64F4B20E374A70098B89E /* PPKit_vp_dan_0@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_dan_0@3x.png"; sourceTree = "<group>"; };
-		5AB64F4C20E374A70098B89E /* PPKit_vp_fastforward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_fastforward@2x.png"; sourceTree = "<group>"; };
-		5AB64F4D20E374A70098B89E /* PPKit_vp_rewind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_rewind@2x.png"; sourceTree = "<group>"; };
-		5AB64F4E20E374A70098B89E /* PPKit_vp_netfailed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_netfailed@2x.png"; sourceTree = "<group>"; };
-		5AB64F4F20E374A70098B89E /* PPKit_vp_netfailed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_netfailed@3x.png"; sourceTree = "<group>"; };
-		5AB64F5020E374A70098B89E /* PPKit_vp_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_list@2x.png"; sourceTree = "<group>"; };
-		5AB64F5120E374A70098B89E /* PPKit_vp_slider@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_slider@2x.png"; sourceTree = "<group>"; };
-		5AB64F5220E374A70098B89E /* PPKit_vp_dan_0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_dan_0@2x.png"; sourceTree = "<group>"; };
-		5AB64F5320E374A70098B89E /* PPKit_vp_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_share@2x.png"; sourceTree = "<group>"; };
-		5AB64F5420E374A70098B89E /* PPKit_vp_smallscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_smallscreen@2x.png"; sourceTree = "<group>"; };
-		5AB64F5520E374A70098B89E /* PPKit_vp_netstalled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_netstalled@3x.png"; sourceTree = "<group>"; };
-		5AB64F5620E374A70098B89E /* PPKit_vp_download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_download@2x.png"; sourceTree = "<group>"; };
-		5AB64F5720E374A70098B89E /* PPKit_vp_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_play@2x.png"; sourceTree = "<group>"; };
-		5AB64F5820E374A70098B89E /* PPKit_vp_pause@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_pause@3x.png"; sourceTree = "<group>"; };
-		5AB64F5920E374A70098B89E /* PPKit_vp_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_back@2x.png"; sourceTree = "<group>"; };
-		5AB64F5A20E374A70098B89E /* PPKit_vp_pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_pause@2x.png"; sourceTree = "<group>"; };
-		5AB64F5B20E374A70098B89E /* PPKit_vp_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_play@3x.png"; sourceTree = "<group>"; };
-		5AB64F5C20E374A70098B89E /* PPKit_vp_slider2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_slider2@2x.png"; sourceTree = "<group>"; };
-		5AB64F5D20E374A70098B89E /* PPKit_vp_netstalled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_netstalled@2x.png"; sourceTree = "<group>"; };
-		5AB64F5E20E374A70098B89E /* PPKit_vp_favorite_solid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_favorite_solid@2x.png"; sourceTree = "<group>"; };
-		5AB64F5F20E374A70098B89E /* PPKit_vp_previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PPKit_vp_previous@2x.png"; sourceTree = "<group>"; };
 		724463691E8B6A2700A03059 /* cdvideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cdvideo.mp4; sourceTree = "<group>"; };
 		728B90161E77F05A00E30C61 /* PPVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		728B901A1E77F05A00E30C61 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -169,12 +80,6 @@
 		728B90251E77F05A00E30C61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		728B90281E77F05A00E30C61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		728B902A1E77F05A00E30C61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		728B90431E77F23000E30C61 /* NELivePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NELivePlayer.h; sourceTree = "<group>"; };
-		728B90441E77F23000E30C61 /* NELivePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NELivePlayerController.h; sourceTree = "<group>"; };
-		728B90461E77F23000E30C61 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		728B90471E77F23000E30C61 /* libNELivePlayer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libNELivePlayer.a; sourceTree = "<group>"; };
-		728B90481E77F23000E30C61 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		728B90491E77F23000E30C61 /* ReleaseNote.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ReleaseNote.md; sourceTree = "<group>"; };
 		728B90731E77F25400E30C61 /* PPVideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPVideoPlayerView.h; sourceTree = "<group>"; };
 		728B90741E77F25400E30C61 /* PPVideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPVideoPlayerView.m; sourceTree = "<group>"; };
 		728B909C1E77F3B700E30C61 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
@@ -199,6 +104,7 @@
 		728B90C01E77F4C400E30C61 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		728B90C21E77F4CB00E30C61 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		728B90C41E77F4D200E30C61 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C9D75B015853D3C4720E3C65 /* Pods-PPVideoPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PPVideoPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,9 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				728B904A1E77F23000E30C61 /* libcrypto.a in Frameworks */,
-				728B904B1E77F23000E30C61 /* libNELivePlayer.a in Frameworks */,
-				728B904C1E77F23000E30C61 /* libssl.a in Frameworks */,
 				728B90C51E77F4D200E30C61 /* UIKit.framework in Frameworks */,
 				728B90C31E77F4CB00E30C61 /* AudioToolbox.framework in Frameworks */,
 				728B90C11E77F4C500E30C61 /* VideoToolbox.framework in Frameworks */,
@@ -227,6 +130,7 @@
 				728B90A71E77F43F00E30C61 /* CFNetwork.framework in Frameworks */,
 				728B90A51E77F43400E30C61 /* CoreTelephony.framework in Frameworks */,
 				728B90A31E77F42900E30C61 /* SystemConfiguration.framework in Frameworks */,
+				56A1E72F998A9B4DF2A729AE /* libPods-PPVideoPlayer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,72 +162,13 @@
 			path = OCBarrage;
 			sourceTree = "<group>";
 		};
-		5AB64F3120E374A70098B89E /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				5AB64F3220E374A70098B89E /* PPKit_vp_dan_1@3x.png */,
-				5AB64F3320E374A70098B89E /* PPKit_vp_favorite_empty@2x.png */,
-				5AB64F3420E374A70098B89E /* Loading */,
-				5AB64F3D20E374A70098B89E /* PPKit_vp_next@2x.png */,
-				5AB64F3E20E374A70098B89E /* PPKit_vp_dan_1@2x.png */,
-				5AB64F3F20E374A70098B89E /* PPKit_vp_play2@3x.png */,
-				5AB64F4020E374A70098B89E /* PPKit_vp_more@2x.png */,
-				5AB64F4120E374A70098B89E /* PPKit_vp_fullscreen@2x.png */,
-				5AB64F4220E374A70098B89E /* PPKit_vp_logo@2x.png */,
-				5AB64F4320E374A70098B89E /* PPKit_vp_pause_big@2x.png */,
-				5AB64F4420E374A70098B89E /* PPKit_vp_replay@2x.png */,
-				5AB64F4520E374A70098B89E /* PPKit_vp_play_big@2x.png */,
-				5AB64F4620E374A70098B89E /* PPKit_vp_logo@3x.png */,
-				5AB64F4720E374A70098B89E /* PPKit_vp_fullscreen@3x.png */,
-				5AB64F4820E374A70098B89E /* PPKit_vp_toTV@2x.png */,
-				5AB64F4920E374A70098B89E /* PPKit_vp_smallscreen@3x.png */,
-				5AB64F4A20E374A70098B89E /* PPKit_vp_pause2@3x.png */,
-				5AB64F4B20E374A70098B89E /* PPKit_vp_dan_0@3x.png */,
-				5AB64F4C20E374A70098B89E /* PPKit_vp_fastforward@2x.png */,
-				5AB64F4D20E374A70098B89E /* PPKit_vp_rewind@2x.png */,
-				5AB64F4E20E374A70098B89E /* PPKit_vp_netfailed@2x.png */,
-				5AB64F4F20E374A70098B89E /* PPKit_vp_netfailed@3x.png */,
-				5AB64F5020E374A70098B89E /* PPKit_vp_list@2x.png */,
-				5AB64F5120E374A70098B89E /* PPKit_vp_slider@2x.png */,
-				5AB64F5220E374A70098B89E /* PPKit_vp_dan_0@2x.png */,
-				5AB64F5320E374A70098B89E /* PPKit_vp_share@2x.png */,
-				5AB64F5420E374A70098B89E /* PPKit_vp_smallscreen@2x.png */,
-				5AB64F5520E374A70098B89E /* PPKit_vp_netstalled@3x.png */,
-				5AB64F5620E374A70098B89E /* PPKit_vp_download@2x.png */,
-				5AB64F5720E374A70098B89E /* PPKit_vp_play@2x.png */,
-				5AB64F5820E374A70098B89E /* PPKit_vp_pause@3x.png */,
-				5AB64F5920E374A70098B89E /* PPKit_vp_back@2x.png */,
-				5AB64F5A20E374A70098B89E /* PPKit_vp_pause@2x.png */,
-				5AB64F5B20E374A70098B89E /* PPKit_vp_play@3x.png */,
-				5AB64F5C20E374A70098B89E /* PPKit_vp_slider2@2x.png */,
-				5AB64F5D20E374A70098B89E /* PPKit_vp_netstalled@2x.png */,
-				5AB64F5E20E374A70098B89E /* PPKit_vp_favorite_solid@2x.png */,
-				5AB64F5F20E374A70098B89E /* PPKit_vp_previous@2x.png */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
-		5AB64F3420E374A70098B89E /* Loading */ = {
-			isa = PBXGroup;
-			children = (
-				5AB64F3520E374A70098B89E /* PPKit_vp_loading_6@3x.png */,
-				5AB64F3620E374A70098B89E /* PPKit_vp_loading_8@3x.png */,
-				5AB64F3720E374A70098B89E /* PPKit_vp_loading_4@3x.png */,
-				5AB64F3820E374A70098B89E /* PPKit_vp_loading_2@3x.png */,
-				5AB64F3920E374A70098B89E /* PPKit_vp_loading_7@3x.png */,
-				5AB64F3A20E374A70098B89E /* PPKit_vp_loading_5@3x.png */,
-				5AB64F3B20E374A70098B89E /* PPKit_vp_loading_1@3x.png */,
-				5AB64F3C20E374A70098B89E /* PPKit_vp_loading_3@3x.png */,
-			);
-			path = Loading;
-			sourceTree = "<group>";
-		};
 		728B900D1E77F05A00E30C61 = {
 			isa = PBXGroup;
 			children = (
 				728B903E1E77F1AB00E30C61 /* Frameworks */,
 				728B90181E77F05A00E30C61 /* PPVideoPlayer */,
 				728B90171E77F05A00E30C61 /* Products */,
+				81E5640D5646E757790524EB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -386,6 +231,7 @@
 				728B90A61E77F43F00E30C61 /* CFNetwork.framework */,
 				728B90A41E77F43400E30C61 /* CoreTelephony.framework */,
 				728B90A21E77F42900E30C61 /* SystemConfiguration.framework */,
+				491A82F961C3941D0869C800 /* libPods-PPVideoPlayer.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -393,50 +239,21 @@
 		728B903F1E77F23000E30C61 /* PPVideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				728B90401E77F23000E30C61 /* LivePlayer */,
 				5AB64F0620E2459E0098B89E /* OCBarrage */,
-				5AB64F3120E374A70098B89E /* Images */,
+				5A6530D4212AE6E60003DE7A /* PPVideoPlayer.bundle */,
 				728B90731E77F25400E30C61 /* PPVideoPlayerView.h */,
 				728B90741E77F25400E30C61 /* PPVideoPlayerView.m */,
 			);
 			path = PPVideoPlayer;
 			sourceTree = "<group>";
 		};
-		728B90401E77F23000E30C61 /* LivePlayer */ = {
+		81E5640D5646E757790524EB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				728B90411E77F23000E30C61 /* include */,
-				728B90451E77F23000E30C61 /* libs */,
-				728B90491E77F23000E30C61 /* ReleaseNote.md */,
+				4E941C5E0009BB152505D996 /* Pods-PPVideoPlayer.debug.xcconfig */,
+				C9D75B015853D3C4720E3C65 /* Pods-PPVideoPlayer.release.xcconfig */,
 			);
-			path = LivePlayer;
-			sourceTree = "<group>";
-		};
-		728B90411E77F23000E30C61 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				728B90421E77F23000E30C61 /* NELivePlayer */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		728B90421E77F23000E30C61 /* NELivePlayer */ = {
-			isa = PBXGroup;
-			children = (
-				728B90431E77F23000E30C61 /* NELivePlayer.h */,
-				728B90441E77F23000E30C61 /* NELivePlayerController.h */,
-			);
-			path = NELivePlayer;
-			sourceTree = "<group>";
-		};
-		728B90451E77F23000E30C61 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				728B90461E77F23000E30C61 /* libcrypto.a */,
-				728B90471E77F23000E30C61 /* libNELivePlayer.a */,
-				728B90481E77F23000E30C61 /* libssl.a */,
-			);
-			path = libs;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,9 +263,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 728B902D1E77F05A00E30C61 /* Build configuration list for PBXNativeTarget "PPVideoPlayer" */;
 			buildPhases = (
+				B5174B50D0B16F7DC41D5A7D /* [CP] Check Pods Manifest.lock */,
 				728B90121E77F05A00E30C61 /* Sources */,
 				728B90131E77F05A00E30C61 /* Frameworks */,
 				728B90141E77F05A00E30C61 /* Resources */,
+				C943F93188A05A65F2EE4526 /* [CP] Embed Pods Frameworks */,
+				94711FDC3430B51302922515 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -470,7 +290,7 @@
 				TargetAttributes = {
 					728B90151E77F05A00E30C61 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9GQYQLKLSQ;
+						DevelopmentTeam = F9UAGF98L6;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -503,59 +323,69 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AB64F7F20E374A70098B89E /* PPKit_vp_dan_0@2x.png in Resources */,
-				5AB64F8920E374A70098B89E /* PPKit_vp_slider2@2x.png in Resources */,
-				5AB64F6320E374A70098B89E /* PPKit_vp_loading_8@3x.png in Resources */,
-				5AB64F6B20E374A70098B89E /* PPKit_vp_dan_1@2x.png in Resources */,
-				5AB64F8520E374A70098B89E /* PPKit_vp_pause@3x.png in Resources */,
-				5AB64F8220E374A70098B89E /* PPKit_vp_netstalled@3x.png in Resources */,
-				5AB64F6D20E374A70098B89E /* PPKit_vp_more@2x.png in Resources */,
-				5AB64F6720E374A70098B89E /* PPKit_vp_loading_5@3x.png in Resources */,
-				5AB64F6220E374A70098B89E /* PPKit_vp_loading_6@3x.png in Resources */,
 				728B90291E77F05A00E30C61 /* LaunchScreen.storyboard in Resources */,
-				5AB64F8A20E374A70098B89E /* PPKit_vp_netstalled@2x.png in Resources */,
-				5AB64F8820E374A70098B89E /* PPKit_vp_play@3x.png in Resources */,
-				5AB64F6620E374A70098B89E /* PPKit_vp_loading_7@3x.png in Resources */,
-				5AB64F8420E374A70098B89E /* PPKit_vp_play@2x.png in Resources */,
-				5AB64F8320E374A70098B89E /* PPKit_vp_download@2x.png in Resources */,
-				5AB64F6420E374A70098B89E /* PPKit_vp_loading_4@3x.png in Resources */,
-				5AB64F8020E374A70098B89E /* PPKit_vp_share@2x.png in Resources */,
-				5AB64F6820E374A70098B89E /* PPKit_vp_loading_1@3x.png in Resources */,
-				5AB64F6920E374A70098B89E /* PPKit_vp_loading_3@3x.png in Resources */,
-				5AB64F7120E374A70098B89E /* PPKit_vp_replay@2x.png in Resources */,
 				728B90261E77F05A00E30C61 /* Assets.xcassets in Resources */,
-				5AB64F7720E374A70098B89E /* PPKit_vp_pause2@3x.png in Resources */,
-				5AB64F7C20E374A70098B89E /* PPKit_vp_netfailed@3x.png in Resources */,
-				5AB64F8C20E374A70098B89E /* PPKit_vp_previous@2x.png in Resources */,
-				5AB64F7820E374A70098B89E /* PPKit_vp_dan_0@3x.png in Resources */,
-				5AB64F7B20E374A70098B89E /* PPKit_vp_netfailed@2x.png in Resources */,
-				5AB64F8620E374A70098B89E /* PPKit_vp_back@2x.png in Resources */,
+				5A6530D5212AE6E60003DE7A /* PPVideoPlayer.bundle in Resources */,
 				7244636A1E8B6A2700A03059 /* cdvideo.mp4 in Resources */,
-				5AB64F7620E374A70098B89E /* PPKit_vp_smallscreen@3x.png in Resources */,
-				5AB64F7020E374A70098B89E /* PPKit_vp_pause_big@2x.png in Resources */,
 				728B90241E77F05A00E30C61 /* Main.storyboard in Resources */,
-				5AB64F6C20E374A70098B89E /* PPKit_vp_play2@3x.png in Resources */,
-				5AB64F6F20E374A70098B89E /* PPKit_vp_logo@2x.png in Resources */,
-				5AB64F6020E374A70098B89E /* PPKit_vp_dan_1@3x.png in Resources */,
-				5AB64F8B20E374A70098B89E /* PPKit_vp_favorite_solid@2x.png in Resources */,
-				5AB64F7D20E374A70098B89E /* PPKit_vp_list@2x.png in Resources */,
-				5AB64F6520E374A70098B89E /* PPKit_vp_loading_2@3x.png in Resources */,
-				5AB64F6E20E374A70098B89E /* PPKit_vp_fullscreen@2x.png in Resources */,
-				5AB64F7520E374A70098B89E /* PPKit_vp_toTV@2x.png in Resources */,
-				5AB64F6120E374A70098B89E /* PPKit_vp_favorite_empty@2x.png in Resources */,
-				5AB64F7A20E374A70098B89E /* PPKit_vp_rewind@2x.png in Resources */,
-				5AB64F6A20E374A70098B89E /* PPKit_vp_next@2x.png in Resources */,
-				5AB64F7420E374A70098B89E /* PPKit_vp_fullscreen@3x.png in Resources */,
-				5AB64F8120E374A70098B89E /* PPKit_vp_smallscreen@2x.png in Resources */,
-				5AB64F7920E374A70098B89E /* PPKit_vp_fastforward@2x.png in Resources */,
-				5AB64F8720E374A70098B89E /* PPKit_vp_pause@2x.png in Resources */,
-				5AB64F7220E374A70098B89E /* PPKit_vp_play_big@2x.png in Resources */,
-				5AB64F7E20E374A70098B89E /* PPKit_vp_slider@2x.png in Resources */,
-				5AB64F7320E374A70098B89E /* PPKit_vp_logo@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		94711FDC3430B51302922515 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5174B50D0B16F7DC41D5A7D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PPVideoPlayer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C943F93188A05A65F2EE4526 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks.sh",
+				"${PODS_ROOT}/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NELivePlayerFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		728B90121E77F05A00E30C61 /* Sources */ = {
@@ -570,7 +400,6 @@
 				5AB64F1920E2459E0098B89E /* OCBarrageTextCell.m in Sources */,
 				728B909E1E77F3B700E30C61 /* Demo1ViewController.m in Sources */,
 				5AB64F1A20E2459E0098B89E /* OCBarrageDescriptor.m in Sources */,
-				728B904D1E77F23000E30C61 /* ReleaseNote.md in Sources */,
 				728B90211E77F05A00E30C61 /* ViewController.m in Sources */,
 				5AB64F1C20E2459E0098B89E /* OCBarrageTextDescriptor.m in Sources */,
 				5AB64F1D20E2459E0098B89E /* CALayer+OCBarrage.m in Sources */,
@@ -692,9 +521,10 @@
 		};
 		728B902E1E77F05A00E30C61 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E941C5E0009BB152505D996 /* Pods-PPVideoPlayer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9GQYQLKLSQ;
+				DEVELOPMENT_TEAM = F9UAGF98L6;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/PPVideoPlayer/PPVideoPlayer/LivePlayer/include";
 				INFOPLIST_FILE = PPVideoPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -702,7 +532,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PPVideoPlayer/PPVideoPlayer/LivePlayer/libs",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pinguo.PPVideoPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaopin.PPVideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -710,9 +540,10 @@
 		};
 		728B902F1E77F05A00E30C61 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9D75B015853D3C4720E3C65 /* Pods-PPVideoPlayer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9GQYQLKLSQ;
+				DEVELOPMENT_TEAM = F9UAGF98L6;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/PPVideoPlayer/PPVideoPlayer/LivePlayer/include";
 				INFOPLIST_FILE = PPVideoPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -720,7 +551,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PPVideoPlayer/PPVideoPlayer/LivePlayer/libs",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pinguo.PPVideoPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xiaopin.PPVideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7";
 			};

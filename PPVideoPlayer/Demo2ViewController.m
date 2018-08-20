@@ -24,7 +24,7 @@
 #pragma mark - 懒加载对象
 - (PPVideoPlayerView *)videoPlayer{
     if(!_videoPlayer){
-        _videoPlayer = [[PPVideoPlayerView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.width/1.776)];
+        _videoPlayer = [[PPVideoPlayerView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.width/1.776)];
         _videoPlayer.delegate = self;
         _videoPlayer.showTopBar = YES;
         _videoPlayer.showShareButton = YES;
@@ -140,6 +140,7 @@
     self.videoPlayer.playUrl = movieUrl;
     self.videoPlayer.isLive = NO;
     self.videoPlayer.isWifiNetwork = YES;
+    self.videoPlayer.isAutoPlay = NO;
     [self.videoPlayer prepareToPlay];
     //[self.videoPlayer play];
     

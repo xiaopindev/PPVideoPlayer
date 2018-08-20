@@ -9,25 +9,22 @@
 //  Git Hub: https://github.com/xiaopn166
 //  QQ交流群：168368234
 //  最后修改时间：2018-06-26
-//  版本：v1.1.0
+//  版本：v2.0
 //
 
 /*
  版本说明：
- v1.1.0
+ v2.0
     1.增加弹幕功能
-    2.增加音量调节和亮度调节
- v1.0.0
+    2.升级网易播放器SDK至v1.9.1
+ v1.0
     1.使用网易组件自定义播放器界面
     2.支持直播、点播模式
  */
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "NELivePlayer.h"
-#import "NELivePlayerController.h"
-//#import <NELivePlayer/NELivePlayer.h>
-//#import <NELivePlayer/NELivePlayerController.h>
+#import <NELivePlayerFramework/NELivePlayerFramework.h>
 #import "OCBarrage.h"
 
 typedef enum : NSUInteger {

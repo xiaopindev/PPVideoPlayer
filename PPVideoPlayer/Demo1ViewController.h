@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <NELivePlayer/NELivePlayer.h>
-#import <NELivePlayer/NELivePlayerController.h>
+#import <NELivePlayerFramework/NELivePlayerFramework.h>
 
 
 /**
@@ -16,6 +15,6 @@
  */
 @interface Demo1ViewController : UIViewController
 
-@property(nonatomic, strong) id<NELivePlayer> liveplayer;
+@property (nonatomic, strong) NELivePlayerController *player; //播放器sdk
 
 @end

@@ -10,6 +10,8 @@
 #import "Demo1ViewController.h"
 #import "Demo2ViewController.h"
 
+#import <NELivePlayerFramework/NELivePlayerFramework.h>
+
 @interface ViewController ()
 
 @end
@@ -19,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    NSLog(@"当前网易播放器版本：%@",[NELivePlayerController getSDKVersion]);
 }
 
 

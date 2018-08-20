@@ -20,18 +20,32 @@
 
 @implementation Demo1ViewController
 
--(id<NELivePlayer>)liveplayer{
-    if(!_liveplayer){
-        self.playerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 250)];
-        _liveplayer = [[NELivePlayerController alloc] initWithContentURL:[NSURL URLWithString:self.liveUrlHSL]];
-        if (_liveplayer == nil) { // 返回空则表示初始化失败
-            NSLog(@"player initilize failed, please tay again!");
+- (NELivePlayerController *)player{
+    if(!_player){
+        [NELivePlayerController setLogLevel:NELP_LOG_VERBOSE];
+        
+        NSError *error = nil;
+        self.playerView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, 375, 250)];
+        [self.view addSubview:self.playerView];
+        _player = [[NELivePlayerController alloc] initWithContentURL:[NSURL URLWithString:self.liveUrlHSL] error:&error];
+        if (self.player == nil) {
+            NSLog(@"player initilize failed, please tay again.error = [%@]!", error);
         }
-        _liveplayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        _liveplayer.view.frame = self.playerView.bounds;
-        [_liveplayer setScalingMode:NELPMovieScalingModeFill];
+        _player.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _player.view.frame = self.playerView.bounds;
+        [self.playerView addSubview:self.player.view];
+        
+        self.view.autoresizesSubviews = YES;
+        
+        //[_player setBufferStrategy:NELPLowDelay]; // 直播低延时模式
+        [_player setBufferStrategy:NELPAntiJitter]; // 点播抗抖动
+        [_player setScalingMode:NELPMovieScalingModeNone]; // 设置画面显示模式，默认原始大小
+        [_player setShouldAutoplay:YES]; // 设置prepareToPlay完成后是否自动播放
+        [_player setHardwareDecoder:YES]; // 设置解码模式，是否开启硬件解码
+        [_player setPauseInBackground:YES]; // 设置切入后台时的状态，暂停还是继续播放
+        [_player setPlaybackTimeout:15 *1000]; // 设置拉流超时时间
     }
-    return _liveplayer;
+    return _player;
 }
 
 -(NSString *)liveUrlHTTP{
@@ -44,7 +58,9 @@
 -(NSString *)liveUrlHSL{
     if(!_liveUrlHSL){
         //_liveUrlHSL = @"http://pullhls5aa29f72.live.126.net/live/ecdaf25d8bfd4030b93310ef6b23b76e/playlist.m3u8";
-        _liveUrlHSL = [[NSBundle mainBundle] pathForResource:@"cdvideo" ofType:@"mp4"];
+        _liveUrlHSL = @"http://1252065688.vod2.myqcloud.com/d7dc3e4avodgzp1252065688/e66bae544564972818527816264/MY2sqkSHZMkA.mp4";
+        
+        //_liveUrlHSL = [[NSBundle mainBundle] pathForResource:@"cdvideo" ofType:@"mp4"];
     }
     return _liveUrlHSL;
 }
@@ -59,32 +75,29 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSLog(@"viewWillAppear");
-    NSLog(@"Version = %@", [self.liveplayer getSDKVersion]);
-    [self.liveplayer isLogToFile:YES];
+    NSLog(@"Version = %@", [NELivePlayerController getSDKVersion]);
     
-    [self.liveplayer setBufferStrategy:NELPFluent]; //直播流畅模式
-    [self.liveplayer setScalingMode:NELPMovieScalingModeAspectFill]; //设置画面显示模式，默认原始大小
-    [self.liveplayer setShouldAutoplay:YES]; //设置prepareToPlay完成后是否自动播放
-    //[self.liveplayer setHardwareDecoder:isHardware]; //设置解码模式，是否开启硬件解码
-    [self.liveplayer setPauseInBackground:NO]; //设置切入后台时的状态，暂停还是继续播放
-    [self.liveplayer prepareToPlay]; //初始化视频文件
-    
-    
+//    [self.player setBufferStrategy:NELPFluent]; //直播流畅模式
+//    [self.player setScalingMode:NELPMovieScalingModeAspectFill]; //设置画面显示模式，默认原始大小
+//    [self.player setShouldAutoplay:YES]; //设置prepareToPlay完成后是否自动播放
+//    //[self.player setHardwareDecoder:isHardware]; //设置解码模式，是否开启硬件解码
+//    [self.player setPauseInBackground:NO]; //设置切入后台时的状态，暂停还是继续播放
+    [self.player prepareToPlay]; //初始化视频文件
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     NSLog(@"viewDidDisappear");
     
-    [self.liveplayer shutdown]; //退出播放并释放相关资源
-    [self.liveplayer.view removeFromSuperview];
-    self.liveplayer = nil;
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerDidPreparedToPlayNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerLoadStateChangedNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerPlaybackFinishedNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstVideoDisplayedNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstAudioDisplayedNotification object:_liveplayer];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerVideoParseErrorNotification object:_liveplayer];
+    [self.player shutdown]; //退出播放并释放相关资源
+    [self.player.view removeFromSuperview];
+    self.player = nil;
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerDidPreparedToPlayNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerLoadStateChangedNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerPlaybackFinishedNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstVideoDisplayedNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstAudioDisplayedNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerVideoParseErrorNotification object:_player];
 }
 
 - (void)viewDidLoad {
@@ -92,45 +105,46 @@
     // Do any additional setup after loading the view, typically from a nib.
     NSLog(@"viewDidLoad");
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor whiteColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerDidPreparedToPlay:)
                                                  name:NELivePlayerDidPreparedToPlayNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NeLivePlayerloadStateChanged:)
                                                  name:NELivePlayerLoadStateChangedNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerPlayBackFinished:)
                                                  name:NELivePlayerPlaybackFinishedNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerFirstVideoDisplayed:)
                                                  name:NELivePlayerFirstVideoDisplayedNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerFirstAudioDisplayed:)
                                                  name:NELivePlayerFirstAudioDisplayedNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerReleaseSuccess:)
                                                  name:NELivePlayerReleaseSueecssNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerVideoParseError:)
                                                  name:NELivePlayerVideoParseErrorNotification
-                                               object:_liveplayer];
+                                               object:_player];
     
     self.view.autoresizesSubviews = YES;
-    [self.view addSubview:self.liveplayer.view];
+    [self.view addSubview:self.player.view];
 }
 
 - (void)NELivePlayerDidPreparedToPlay:(NSNotification*)notification
@@ -138,12 +152,12 @@
     //add some methods
     NSLog(@"NELivePlayerDidPreparedToPlay");
     //[self syncUIStatus:NO];
-    [self.liveplayer play]; //开始播放
+    [self.player play]; //开始播放
 }
 
 - (void)NeLivePlayerloadStateChanged:(NSNotification*)notification
 {
-//    NELPMovieLoadState nelpLoadState = _liveplayer.loadState;
+//    NELPMovieLoadState nelpLoadState = _player.loadState;
 //    
 //    if (nelpLoadState == NELPMovieLoadStatePlaythroughOK)
 //    {
@@ -210,7 +224,7 @@
 - (void)NELivePlayerReleaseSuccess:(NSNotification*)notification
 {
     NSLog(@"resource release success!!!");
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerReleaseSueecssNotification object:_liveplayer];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerReleaseSueecssNotification object:_player];
 }
 
 
