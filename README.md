@@ -1,2 +1,3 @@
-# PPVideoPlayer
-# 由于第三方的网易SDK太大，无法进行上传需要另外下载，然后放到PPVideoPlayerView 的统计 PPVideoPlayer目录下
+# OC自定义UI播放器，基于网易播放器SDK,支持直播、点播视频播放，支持弹幕功能和常见需求功能，简单易用。
+# 当前版本v1.1
+# 
