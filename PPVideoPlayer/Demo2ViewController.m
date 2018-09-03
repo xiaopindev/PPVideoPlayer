@@ -212,16 +212,26 @@
 
 #pragma mark --屏幕旋转
 // 视图控制器旋转到某个尺寸
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator
-{
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     
     NSLog(@"%f,%f",size.width,size.height);
     if (size.height > size.width)
     {
         NSLog(@"-------当前设备方向是竖屏-------");
-        self.videoPlayer.frame = CGRectMake(0, 20, size.width, size.width/1.776);
-        self.videoPlayer.fullScreen = NO;
+        if(self.videoPlayer.isFSLocked){
+            //锁定状态
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            appDelegate.allowRotation = YES;//设置横屏
+            [self setNewOrientation:YES];//调用转屏代码
+            self.videoPlayer.showBackButton = YES;
+            self.videoPlayer.showTopBar = YES;
+            self.videoPlayer.fullScreen = YES;
+        }else{
+            //非锁定状态
+            self.videoPlayer.frame = CGRectMake(0, 20, size.width, size.width/1.776);
+            self.videoPlayer.fullScreen = NO;
+        }
     }
     else
     {

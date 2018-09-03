@@ -76,6 +76,10 @@ typedef enum : NSUInteger {
  */
 @property (nonatomic,assign,getter=isFullScreen) BOOL fullScreen;
 /**
+ 是否已经全屏锁定
+ */
+@property (nonatomic,assign) BOOL isFSLocked;
+/**
  是否是直播，默认NO
  */
 @property (nonatomic,assign) BOOL isLive;

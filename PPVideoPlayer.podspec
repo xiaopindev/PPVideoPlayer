@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "PPVideoPlayer"
-  s.version      = "1.0"
+  s.version      = "1.1"
   s.summary      = "OC自定义UI播放器，基于网易播放器SDK,支持直播、点播视频播放，支持弹幕功能和常见需求功能，简单易用。"
 
   # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-                    OC自定义UI播放器，基于网易播放器SDK,支持直播、点播视频播放，支持弹幕功能和常见需求功能，简单易用。
+                    OC自定义UI播放器，基于网易播放器SDK,支持直播、点播视频播放，支持弹幕功能和常见需求功能，简单易用。持续更新中......
                    DESC
 
   s.homepage     = "https://github.com/xiaopn166/PPVideoPlayer"
@@ -56,7 +56,7 @@ Pod::Spec.new do |s|
   s.author             = { "Xiaopin" => "xiaopin16888@qq.com" }
   # Or just: s.author    = "Xiaopin"
   # s.authors            = { "Xiaopin" => "251089096@qq.com" }
-  # s.social_media_url   = "http://xiaopin.cnblogs.com/"
+  s.social_media_url   = "http://xiaopin.cnblogs.com/"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/xiaopn166/PPVideoPlayer.git", :tag => s.version.to_s }
+s.source       = { :git => "https://github.com/xiaopn166/PPVideoPlayer.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -91,8 +91,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files = "PPVideoPlayer/PPVideoPlayer/**/*.{h,m}"
-  #s.source_files  = "PPVideoPlayer", "PPVideoPlayer/**/*.{h,m}"
+  s.source_files  = "PPVideoPlayer", "PPVideoPlayer/**/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -107,7 +106,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-   s.resources = "PPVideoPlayer/PPVideoPlayer/Images/*.png"
+   s.resources = "PPVideoPlayer/PPVideoPlayer/PPVideoPlayer.bundle"
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -131,9 +130,9 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+  s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency 'NELivePlayer', '~> 1.9.1'
 
 end

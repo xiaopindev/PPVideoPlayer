@@ -8,6 +8,7 @@
 
 #import "PPVideoPlayerView.h"
 #import "OCBarrage.h"
+#import "BrightnessVolumeView.h"
 
 @interface PPVideoPlayerView ()
 {
@@ -62,6 +63,11 @@
 @property (nonatomic,strong) UILabel *liveNotStartedView;
 //直播结束提示
 @property (nonatomic,strong) UILabel *liveOverView;
+
+//音量亮度视图
+@property (nonatomic,strong) BrightnessVolumeView *BVView;
+//全屏锁定
+@property (nonatomic,strong) UIButton *btnFSLock;
 
 //底部控制视图
 @property (nonatomic,strong) UIView *bottomView;
@@ -284,6 +290,28 @@
     }
     return _liveOverView;
 }
+
+-(BrightnessVolumeView *)BVView{
+    if(!_BVView){
+        _BVView = [[BrightnessVolumeView alloc] initWithFrame:self.bounds];
+    }
+    return _BVView;
+}
+
+-(UIButton *)btnFSLock{
+    if(!_btnFSLock){
+        _btnFSLock = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_btnFSLock setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_screen_open"] forState:UIControlStateNormal];
+        [_btnFSLock addTarget:self action:@selector(fslockAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    }
+    
+    CGFloat pvY = (self.bounds.size.height - 30)/2;
+    _btnFSLock.frame = CGRectMake(30, pvY, 30, 30);
+    
+    return _btnFSLock;
+}
+
 #pragma mark - ---尾
 -(UIView *)bottomView{
     if(!_bottomView){
@@ -456,6 +484,9 @@
         //添加平移手势
         //UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panMove:)];
         //[self addGestureRecognizer:panGesture];
+        
+        //添加音量亮度调节视图
+        [self addSubview:self.BVView];
     }
     return self;
 }
@@ -699,7 +730,7 @@
                 // 获取视频总长度
                 NSTimeInterval totalSecond = weakSelf.player.duration;
                 
-                NSLog(@"当前播放进度：%f/%f/%f",currentSecond,currentCache,totalSecond);
+                //NSLog(@"当前播放进度：%f/%f/%f",currentSecond,currentCache,totalSecond);
                 
                 //改变播放时间和进度的状态
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -959,6 +990,14 @@
     }
     
     self.barrageManager.renderView.frame = CGRectMake(0, 40, self.bounds.size.width, self.bounds.size.height - 80);
+    
+    self.BVView.frame = self.bounds;
+    
+    if(self.controlStyle == PPVideoPlayerControlStyleFullScreen){
+        [self addSubview:self.btnFSLock];
+    }else{
+        [self.btnFSLock removeFromSuperview];
+    }
 }
 
 /**
@@ -1543,6 +1582,19 @@
 
     if(self.delegate && [self.delegate respondsToSelector:@selector(PPVideoPlayerView:fullScreenAction:)]){
         [self.delegate PPVideoPlayerView:self fullScreenAction:nil];
+    }
+}
+
+//全屏锁定/解锁
+- (void)fslockAction{
+    self.isFSLocked = !self.isFSLocked;
+    
+    if(self.isFSLocked){
+        //锁定全屏
+        [self.btnFSLock setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_screen_close"] forState:UIControlStateNormal];
+    }else{
+        //解锁全屏
+        [self.btnFSLock setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_screen_open"] forState:UIControlStateNormal];
     }
 }
 
