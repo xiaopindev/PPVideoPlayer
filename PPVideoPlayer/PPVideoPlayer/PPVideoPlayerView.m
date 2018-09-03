@@ -652,6 +652,14 @@
     }
 }
 
+-(void)setIsBVControlOn:(BOOL)isBVControlOn{
+    _isBVControlOn = isBVControlOn;
+    
+    if(!isBVControlOn){
+        [self.BVView removeFromSuperview];
+    }
+}
+
 #pragma mark - 播放器核心操作
 
 //装载播放

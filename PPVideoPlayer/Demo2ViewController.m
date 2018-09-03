@@ -36,6 +36,7 @@
         _videoPlayer.showToTVButton = YES;
         _videoPlayer.showFullScreenButton = YES;
         _videoPlayer.showBarrageButton = YES;
+        _videoPlayer.isBVControlOn = NO;
         _videoPlayer.controlStyle = PPVideoPlayerControlStyleDefault;
     }
     

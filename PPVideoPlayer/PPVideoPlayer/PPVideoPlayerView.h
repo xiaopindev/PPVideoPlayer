@@ -79,6 +79,11 @@ typedef enum : NSUInteger {
  是否已经全屏锁定
  */
 @property (nonatomic,assign) BOOL isFSLocked;
+
+/**
+ 是否启用亮度和音量控制
+ */
+@property (nonatomic,assign) BOOL isBVControlOn;
 /**
  是否是直播，默认NO
  */
