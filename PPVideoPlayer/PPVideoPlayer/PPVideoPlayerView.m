@@ -487,6 +487,9 @@
         
         //添加音量亮度调节视图
         [self addSubview:self.BVView];
+        
+        [self bringSubviewToFront:self.topView];
+        [self bringSubviewToFront:self.bottomView];
     }
     return self;
 }
