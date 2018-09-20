@@ -906,7 +906,7 @@
         //全屏模式：返回按钮，标题，分享按钮，收藏按钮，下载按钮
         pX = 10;
         [self addSubview:self.btnBack];
-        self.btnBack.frame = CGRectMake(pX, 0, 40, 40);
+        self.btnBack.frame = CGRectMake(pX, 5, 30, 30);
         CGFloat tmpX = pX + self.btnBack.frame.size.width + 5;
         
         BOOL hasRightBtn = NO;
@@ -948,7 +948,7 @@
         pX = 10;
         if(self.showBackButton){
             [self addSubview:self.btnBack];
-            self.btnBack.frame = CGRectMake(pX, 0, 40, 40);
+            self.btnBack.frame = CGRectMake(pX, 5, 30, 30);
             pX = pX + self.btnBack.frame.size.width + 5;
         }
         [self.topView addSubview:self.labTitle];
