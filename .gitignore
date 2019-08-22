@@ -32,3 +32,8 @@ Pods/Target Support Files/NELivePlayer/NELivePlayer.xcconfig
 Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks.sh
 Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer.debug.xcconfig
 Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer.release.xcconfig
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-acknowledgements.markdown
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-acknowledgements.plist
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-dummy.m
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-resources.sh
+PPVideoPlayer.xcworkspace/xcuserdata/cdmac666.xcuserdatad/UserInterfaceState.xcuserstate
