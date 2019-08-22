@@ -1,2 +1,34 @@
 
 .DS_Store
+Pods/Headers/Public/NELivePlayer/NELivePlayerFramework/NELivePlayer.h
+Pods/Headers/Public/NELivePlayer/NELivePlayerFramework/NELivePlayerController.h
+Pods/Headers/Public/NELivePlayer/NELivePlayerFramework/NELivePlayerDef.h
+Pods/Headers/Public/NELivePlayer/NELivePlayerFramework/NELivePlayerFramework.h
+Pods/Headers/Public/NELivePlayer/NELivePlayerFramework/NELivePlayerNotication.h
+Pods/Manifest.lock
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework/Headers/NELivePlayer.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework/Headers/NELivePlayerController.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework/Headers/NELivePlayerDef.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework/Headers/NELivePlayerFramework.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework/Headers/NELivePlayerNotication.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework/Info.plist
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework/Modules/module.modulemap
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework/NELivePlayerFramework
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/Headers/NELivePlayer.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/Headers/NELivePlayerController.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/Headers/NELivePlayerDefine.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/Headers/NELivePlayerFramework.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/Headers/NELivePlayerModel.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/Headers/NELivePlayerNotication.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/Headers/NELPNetworkDiagnosisReporter.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/Info.plist
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/Modules/module.modulemap
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework/NELivePlayerFramework
+Pods/Pods.xcodeproj/project.pbxproj
+Pods/Pods.xcodeproj/xcuserdata/cdmac666.xcuserdatad/xcschemes/NELivePlayer.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/cdmac666.xcuserdatad/xcschemes/Pods-PPVideoPlayer.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/cdmac666.xcuserdatad/xcschemes/xcschememanagement.plist
+Pods/Target Support Files/NELivePlayer/NELivePlayer.xcconfig
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks.sh
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer.debug.xcconfig
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer.release.xcconfig

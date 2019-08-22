@@ -6,178 +6,289 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		4CF89611F9BD293F36BDFC9EA018B7AC /* NELivePlayer */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 0135831A00CBAF7426A090619B2FCE2C /* Build configuration list for PBXAggregateTarget "NELivePlayer" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = NELivePlayer;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		959B3C0E510E3C91FA95988A75435563 /* Pods-PPVideoPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C79C1D18990B612EF3CBA5F74FCDE79 /* Pods-PPVideoPlayer-dummy.m */; };
-		B5516919FF81A48370C99C1DC998FC67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		19C15FCB9ABEE71DEF6A870ADBAA34F3 /* Pods-PPVideoPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E41F46AB43F24561AEFF23C443C11B9 /* Pods-PPVideoPlayer-dummy.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A8970259E28BCEFA57C2F09B66E338D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CF89611F9BD293F36BDFC9EA018B7AC;
+			remoteInfo = NELivePlayer;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		2C5FEC0DFB1BEE47F9EE6E946B20BA7E /* Pods-PPVideoPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PPVideoPlayer.release.xcconfig"; sourceTree = "<group>"; };
-		5DD36688331C25335DB1E2E60832C28F /* Pods-PPVideoPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PPVideoPlayer.debug.xcconfig"; sourceTree = "<group>"; };
-		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		76DD5EE15373DF8AFA859EF85E8C3FE7 /* libPods-PPVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-PPVideoPlayer.a"; path = "libPods-PPVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9C79C1D18990B612EF3CBA5F74FCDE79 /* Pods-PPVideoPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PPVideoPlayer-dummy.m"; sourceTree = "<group>"; };
-		B6971939BC629448BB32BBA47A26D1C6 /* Pods-PPVideoPlayer-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PPVideoPlayer-resources.sh"; sourceTree = "<group>"; };
-		BC9ABB1B3EF0C96B9AE69F370A239345 /* Pods-PPVideoPlayer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PPVideoPlayer-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C8B382659EF03CA2CEDED71E7172A8A9 /* Pods-PPVideoPlayer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PPVideoPlayer-acknowledgements.plist"; sourceTree = "<group>"; };
-		F0E2A487ABEF34673DA65C3A1348B946 /* Pods-PPVideoPlayer-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PPVideoPlayer-frameworks.sh"; sourceTree = "<group>"; };
-		FC3863159A8F650A08A493FB6D8F03FD /* NELivePlayerFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NELivePlayerFramework.framework; path = LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework; sourceTree = "<group>"; };
+		0C362C0E9504477EFD008242299CBAA4 /* Pods-PPVideoPlayer-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PPVideoPlayer-frameworks.sh"; sourceTree = "<group>"; };
+		1D247EA2614F3AF92AD7CE838C0592DE /* Pods-PPVideoPlayer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PPVideoPlayer-acknowledgements.markdown"; sourceTree = "<group>"; };
+		25E2B8B26CC569D80D851313B5C6EB68 /* libPods-PPVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-PPVideoPlayer.a"; path = "libPods-PPVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		276992C84EF136301B325931299D640C /* Pods-PPVideoPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PPVideoPlayer.release.xcconfig"; sourceTree = "<group>"; };
+		401328DE6D1DD95BC1E2AA00FB047F8D /* NELivePlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NELivePlayer.xcconfig; sourceTree = "<group>"; };
+		7E41F46AB43F24561AEFF23C443C11B9 /* Pods-PPVideoPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PPVideoPlayer-dummy.m"; sourceTree = "<group>"; };
+		7E7775F09D9CFD84F1D6FECF9132EC21 /* Pods-PPVideoPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PPVideoPlayer.debug.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A9DDF79E89F81CE044B93E53A64318CE /* NELivePlayerFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NELivePlayerFramework.framework; path = LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework; sourceTree = "<group>"; };
+		D27F17FCCCBE5EBC1CF633FACB9D340F /* Pods-PPVideoPlayer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PPVideoPlayer-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9DA9EF79D112A0CC7AE9F665B08AB367 /* Frameworks */ = {
+		DBA9CC578783DAFD495B4442E2E3C1C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5516919FF81A48370C99C1DC998FC67 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C56CA7429AF3B58DEAEF7EDF7F90800 /* Frameworks */ = {
+		040FCED1CDC5BE0B22757CAEB958A121 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FC3863159A8F650A08A493FB6D8F03FD /* NELivePlayerFramework.framework */,
+				401328DE6D1DD95BC1E2AA00FB047F8D /* NELivePlayer.xcconfig */,
 			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/NELivePlayer";
 			sourceTree = "<group>";
 		};
-		5122831699D82C15435C9739BA5D4E7D /* Products */ = {
+		67AE587B4FE76B9B79E1A315A446724E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				76DD5EE15373DF8AFA859EF85E8C3FE7 /* libPods-PPVideoPlayer.a */,
+				25E2B8B26CC569D80D851313B5C6EB68 /* libPods-PPVideoPlayer.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6A6971A239E3921BBAC9EEBCBC5C6D61 /* Pods */ = {
+		83133BDAB8265B5145EAA8B52B282487 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F08F0F8263C473D6B6164720E352B319 /* NELivePlayer */,
+				BADBEA37D430B08BEAC0F972DD463110 /* NELivePlayer */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		70EC5C78AD9152940E7BA0077AA2CE43 /* Pods-PPVideoPlayer */ = {
+		BADBEA37D430B08BEAC0F972DD463110 /* NELivePlayer */ = {
 			isa = PBXGroup;
 			children = (
-				BC9ABB1B3EF0C96B9AE69F370A239345 /* Pods-PPVideoPlayer-acknowledgements.markdown */,
-				C8B382659EF03CA2CEDED71E7172A8A9 /* Pods-PPVideoPlayer-acknowledgements.plist */,
-				9C79C1D18990B612EF3CBA5F74FCDE79 /* Pods-PPVideoPlayer-dummy.m */,
-				F0E2A487ABEF34673DA65C3A1348B946 /* Pods-PPVideoPlayer-frameworks.sh */,
-				B6971939BC629448BB32BBA47A26D1C6 /* Pods-PPVideoPlayer-resources.sh */,
-				5DD36688331C25335DB1E2E60832C28F /* Pods-PPVideoPlayer.debug.xcconfig */,
-				2C5FEC0DFB1BEE47F9EE6E946B20BA7E /* Pods-PPVideoPlayer.release.xcconfig */,
-			);
-			name = "Pods-PPVideoPlayer";
-			path = "Target Support Files/Pods-PPVideoPlayer";
-			sourceTree = "<group>";
-		};
-		7DB346D0F39D3F0E887471402A8071AB = {
-			isa = PBXGroup;
-			children = (
-				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				6A6971A239E3921BBAC9EEBCBC5C6D61 /* Pods */,
-				5122831699D82C15435C9739BA5D4E7D /* Products */,
-				8B7D4A15F455155BF6ED1CDC9A3B6272 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		8B7D4A15F455155BF6ED1CDC9A3B6272 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				70EC5C78AD9152940E7BA0077AA2CE43 /* Pods-PPVideoPlayer */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		F08F0F8263C473D6B6164720E352B319 /* NELivePlayer */ = {
-			isa = PBXGroup;
-			children = (
-				0C56CA7429AF3B58DEAEF7EDF7F90800 /* Frameworks */,
+				E5C03266F2223AA06E008BD1765A1AC0 /* Frameworks */,
+				040FCED1CDC5BE0B22757CAEB958A121 /* Support Files */,
 			);
 			name = NELivePlayer;
 			path = NELivePlayer;
 			sourceTree = "<group>";
 		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				83133BDAB8265B5145EAA8B52B282487 /* Pods */,
+				67AE587B4FE76B9B79E1A315A446724E /* Products */,
+				FFB009D4FC49B103310410250BB9A59B /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E5C03266F2223AA06E008BD1765A1AC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A9DDF79E89F81CE044B93E53A64318CE /* NELivePlayerFramework.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED3A426F9B38D0FDA31AE7D9374B9E95 /* Pods-PPVideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				1D247EA2614F3AF92AD7CE838C0592DE /* Pods-PPVideoPlayer-acknowledgements.markdown */,
+				D27F17FCCCBE5EBC1CF633FACB9D340F /* Pods-PPVideoPlayer-acknowledgements.plist */,
+				7E41F46AB43F24561AEFF23C443C11B9 /* Pods-PPVideoPlayer-dummy.m */,
+				0C362C0E9504477EFD008242299CBAA4 /* Pods-PPVideoPlayer-frameworks.sh */,
+				7E7775F09D9CFD84F1D6FECF9132EC21 /* Pods-PPVideoPlayer.debug.xcconfig */,
+				276992C84EF136301B325931299D640C /* Pods-PPVideoPlayer.release.xcconfig */,
+			);
+			name = "Pods-PPVideoPlayer";
+			path = "Target Support Files/Pods-PPVideoPlayer";
+			sourceTree = "<group>";
+		};
+		FFB009D4FC49B103310410250BB9A59B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				ED3A426F9B38D0FDA31AE7D9374B9E95 /* Pods-PPVideoPlayer */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		4E999D99F4571C7DCA3A602F47C5B102 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		EEA741245A30105BCEF6019BE9EB5D49 /* Pods-PPVideoPlayer */ = {
+		A2E3E983F0E947F604B731D39C796882 /* Pods-PPVideoPlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CA69D8864F71B86CCD39DFD70F099299 /* Build configuration list for PBXNativeTarget "Pods-PPVideoPlayer" */;
+			buildConfigurationList = EE834CC119B45AF978BD170F67063952 /* Build configuration list for PBXNativeTarget "Pods-PPVideoPlayer" */;
 			buildPhases = (
-				7200F7674636A4EC204E945378292E78 /* Sources */,
-				9DA9EF79D112A0CC7AE9F665B08AB367 /* Frameworks */,
+				4E999D99F4571C7DCA3A602F47C5B102 /* Headers */,
+				406D6753E9C35204C1BC81BDD13492B7 /* Sources */,
+				DBA9CC578783DAFD495B4442E2E3C1C8 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				95BA146F4820F2F5F589FF08671774B2 /* PBXTargetDependency */,
 			);
 			name = "Pods-PPVideoPlayer";
 			productName = "Pods-PPVideoPlayer";
-			productReference = 76DD5EE15373DF8AFA859EF85E8C3FE7 /* libPods-PPVideoPlayer.a */;
+			productReference = 25E2B8B26CC569D80D851313B5C6EB68 /* libPods-PPVideoPlayer.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 			};
-			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 5122831699D82C15435C9739BA5D4E7D /* Products */;
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 67AE587B4FE76B9B79E1A315A446724E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EEA741245A30105BCEF6019BE9EB5D49 /* Pods-PPVideoPlayer */,
+				4CF89611F9BD293F36BDFC9EA018B7AC /* NELivePlayer */,
+				A2E3E983F0E947F604B731D39C796882 /* Pods-PPVideoPlayer */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7200F7674636A4EC204E945378292E78 /* Sources */ = {
+		406D6753E9C35204C1BC81BDD13492B7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				959B3C0E510E3C91FA95988A75435563 /* Pods-PPVideoPlayer-dummy.m in Sources */,
+				19C15FCB9ABEE71DEF6A870ADBAA34F3 /* Pods-PPVideoPlayer-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		95BA146F4820F2F5F589FF08671774B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NELivePlayer;
+			target = 4CF89611F9BD293F36BDFC9EA018B7AC /* NELivePlayer */;
+			targetProxy = A8970259E28BCEFA57C2F09B66E338D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		26F954BA177A9A46FFFD4E23ED11D67A /* Release */ = {
+		01C6070C564484890E2B52D3FB519E30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 401328DE6D1DD95BC1E2AA00FB047F8D /* NELivePlayer.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		41538688E2F92D278B6EA168F0EC1F0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 401328DE6D1DD95BC1E2AA00FB047F8D /* NELivePlayer.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6875E2D50360EE56F42EF295AA13E8E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E7775F09D9CFD84F1D6FECF9132EC21 /* Pods-PPVideoPlayer.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7276027E87E7160C22EBA57A7EDBE8E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 276992C84EF136301B325931299D640C /* Pods-PPVideoPlayer.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8F17DC3A99F99FBAD606CE6963886315 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -209,7 +320,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -228,35 +338,17 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		2A052441EA1BEAE1EB40F219403A3AAE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C5FEC0DFB1BEE47F9EE6E946B20BA7E /* Pods-PPVideoPlayer.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E2BF6D6731C31DE69900B7B24E6F0445 /* Debug */ = {
+		916E0404255105F480DC4950B7625F7A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -288,7 +380,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -309,58 +400,49 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
-		EA80E6ECECD73C2D1F54AED4F11EE827 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5DD36688331C25335DB1E2E60832C28F /* Pods-PPVideoPlayer.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+		0135831A00CBAF7426A090619B2FCE2C /* Build configuration list for PBXAggregateTarget "NELivePlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2BF6D6731C31DE69900B7B24E6F0445 /* Debug */,
-				26F954BA177A9A46FFFD4E23ED11D67A /* Release */,
+				41538688E2F92D278B6EA168F0EC1F0C /* Debug */,
+				01C6070C564484890E2B52D3FB519E30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CA69D8864F71B86CCD39DFD70F099299 /* Build configuration list for PBXNativeTarget "Pods-PPVideoPlayer" */ = {
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA80E6ECECD73C2D1F54AED4F11EE827 /* Debug */,
-				2A052441EA1BEAE1EB40F219403A3AAE /* Release */,
+				916E0404255105F480DC4950B7625F7A /* Debug */,
+				8F17DC3A99F99FBAD606CE6963886315 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE834CC119B45AF978BD170F67063952 /* Build configuration list for PBXNativeTarget "Pods-PPVideoPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6875E2D50360EE56F42EF295AA13E8E2 /* Debug */,
+				7276027E87E7160C22EBA57A7EDBE8E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 }

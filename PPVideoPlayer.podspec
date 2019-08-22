@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "PPVideoPlayer"
-  s.version      = "1.1"
+  s.version      = "2.0"
   s.summary      = "OC自定义UI播放器，基于网易播放器SDK,支持直播、点播视频播放，支持弹幕功能和常见需求功能，简单易用。"
 
   # This description is used to generate tags and improve search results.
@@ -90,11 +90,11 @@ s.source       = { :git => "https://github.com/xiaopn166/PPVideoPlayer.git", :ta
   #  For header files it will include any header in the folder.
   #  Not including the public_header_files will make all headers public.
   #
-
+  # 代码文件匹配,**指匹配任意文件夹,*.{h,m}指匹配任意.h和.m文件
   s.source_files  = "PPVideoPlayer", "PPVideoPlayer/**/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
-
-  # s.public_header_files = "Classes/**/*.h"
+  # SDK需要暴露的.h文件,默认暴露所有
+  s.public_header_files = "PPVideoPlayer/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -116,7 +116,7 @@ s.source       = { :git => "https://github.com/xiaopn166/PPVideoPlayer.git", :ta
   #  Link your library with frameworks, or libraries. Libraries do not include
   #  the lib prefix of their name.
   #
-
+  # 系统库依赖以及静态库
   # s.framework  = "SomeFramework"
   # s.frameworks = "SomeFramework", "AnotherFramework"
 
@@ -133,6 +133,8 @@ s.source       = { :git => "https://github.com/xiaopn166/PPVideoPlayer.git", :ta
   s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  s.dependency 'NELivePlayer', '~> 1.9.1'
+
+  # 其他三方库依赖
+  s.dependency 'NELivePlayer', '~> 2.4.2'
 
 end

@@ -1,12 +1,16 @@
 PODS:
-  - NELivePlayer (1.9.1)
+  - NELivePlayer (2.4.2)
 
 DEPENDENCIES:
-  - NELivePlayer (~> 1.9.1)
+  - NELivePlayer (~> 2.4.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - NELivePlayer
 
 SPEC CHECKSUMS:
-  NELivePlayer: b73bcfa755434f8b2ac475f0b6f11b35fb640ec0
+  NELivePlayer: 8b1f443f8d41d0733a8d38e7407da2042dc71841
 
-PODFILE CHECKSUM: 67d678e66dabd1f9867483a3b21427cd73e6874f
+PODFILE CHECKSUM: 225323591afcb881b5609d0865fe827faf386895
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.7.4

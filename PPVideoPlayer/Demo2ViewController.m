@@ -24,18 +24,19 @@
 #pragma mark - 懒加载对象
 - (PPVideoPlayerView *)videoPlayer{
     if(!_videoPlayer){
-        _videoPlayer = [[PPVideoPlayerView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.width/1.776)];
+        _videoPlayer = [[PPVideoPlayerView alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, self.view.frame.size.width/1.776)];
         _videoPlayer.delegate = self;
-        _videoPlayer.showTopBar = YES;
-        _videoPlayer.showShareButton = YES;
-        _videoPlayer.showFavoritesButton = YES;
-        _videoPlayer.showDownButton = YES;
-        _videoPlayer.showNextButton = YES;
-        _videoPlayer.showQualityButton = YES;
-        _videoPlayer.showListButton = YES;
-        _videoPlayer.showToTVButton = YES;
+        _videoPlayer.showTopBar = NO;
+        _videoPlayer.showBackButton = NO;
+        _videoPlayer.showShareButton = NO;
+        _videoPlayer.showFavoritesButton = NO;
+        _videoPlayer.showDownButton = NO;
+        _videoPlayer.showNextButton = NO;
+        _videoPlayer.showQualityButton = NO;
+        _videoPlayer.showListButton = NO;
+        _videoPlayer.showToTVButton = NO;
         _videoPlayer.showFullScreenButton = YES;
-        _videoPlayer.showBarrageButton = YES;
+        _videoPlayer.showBarrageButton = NO;
         _videoPlayer.isBVControlOn = YES;
         _videoPlayer.controlStyle = PPVideoPlayerControlStyleDefault;
     }
@@ -55,7 +56,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -65,7 +66,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

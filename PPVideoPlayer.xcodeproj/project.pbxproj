@@ -289,7 +289,6 @@
 				728B90131E77F05A00E30C61 /* Frameworks */,
 				728B90141E77F05A00E30C61 /* Resources */,
 				C943F93188A05A65F2EE4526 /* [CP] Embed Pods Frameworks */,
-				94711FDC3430B51302922515 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -356,21 +355,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		94711FDC3430B51302922515 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B5174B50D0B16F7DC41D5A7D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -395,8 +379,8 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks.sh",
-				"${PODS_ROOT}/NELivePlayer/LivePlayer_iOS_SDK_v1.9.1/NELivePlayerFramework.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks.sh",
+				"${PODS_ROOT}/NELivePlayer/LivePlayer_iOS_SDK_v2.4.2/NELivePlayerFramework.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -404,7 +388,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
