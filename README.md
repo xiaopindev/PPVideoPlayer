@@ -9,7 +9,7 @@
    
             b.在你的Podfile文件中增加：pod 'NELivePlayer', '~> 2.4.2' ， SDK所需要的第三方播放器
   
-2.Cocoapods添加
+2.Cocoapods添加(由于加上第三方库，验证出错，无法提交到Cocoapods，请使用手动方式)
 
              pod 'PPVideoPlayer', '~> 2.0'
   
