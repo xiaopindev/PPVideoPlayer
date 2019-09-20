@@ -11,6 +11,10 @@
 
 #import "AppDelegate.h"
 
+#define videoURL1 @"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+#define videoURL2 @"http://vjs.zencdn.net/v/oceans.mp4"
+#define videoURL3 @"https://media.w3.org/2010/05/sintel/trailer.mp4"
+
 @interface Demo2ViewController ()<PPVideoPlayerViewDelegate>
 
 @property (nonatomic,strong) PPVideoPlayerView *videoPlayer;
@@ -26,18 +30,19 @@
     if(!_videoPlayer){
         _videoPlayer = [[PPVideoPlayerView alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, self.view.frame.size.width/1.776)];
         _videoPlayer.delegate = self;
-        _videoPlayer.showTopBar = NO;
-        _videoPlayer.showBackButton = NO;
-        _videoPlayer.showShareButton = NO;
-        _videoPlayer.showFavoritesButton = NO;
-        _videoPlayer.showDownButton = NO;
-        _videoPlayer.showNextButton = NO;
-        _videoPlayer.showQualityButton = NO;
-        _videoPlayer.showListButton = NO;
-        _videoPlayer.showToTVButton = NO;
+        _videoPlayer.isAutoPlay = YES;
+        _videoPlayer.showTopBar = YES;
+        _videoPlayer.showBackButton = YES;
+        _videoPlayer.showShareButton = YES;
+//        _videoPlayer.showFavoritesButton = YES;
+//        _videoPlayer.showDownButton = YES;
+//        _videoPlayer.showNextButton = YES;
+//        _videoPlayer.showQualityButton = YES;
+//        _videoPlayer.showListButton = YES;
+//        _videoPlayer.showToTVButton = YES;
+        _videoPlayer.showSoundButton = YES;
         _videoPlayer.showFullScreenButton = YES;
-        _videoPlayer.showBarrageButton = NO;
-        _videoPlayer.isBVControlOn = YES;
+//        _videoPlayer.showBarrageButton = YES;
         _videoPlayer.controlStyle = PPVideoPlayerControlStyleDefault;
     }
     
@@ -57,6 +62,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -136,33 +142,37 @@
  *  加载数据
  */
 -(void)loadData{
+    
+
+    
     //NSURL *movieUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cdvideo" ofType:@"mp4"]];
     NSURL *movieUrl = [NSURL URLWithString:@"http://1252065688.vod2.myqcloud.com/d7dc3e4avodgzp1252065688/e66bae544564972818527816264/MY2sqkSHZMkA.mp4"];
-    self.videoPlayer.title = @"video title2";
+    movieUrl = [NSURL URLWithString:@"rtmp://58.200.131.2:1935/livetv/hunantv"];
+    self.videoPlayer.title = @"这是一个测试视频这是一个测试视频这是一个测试视频这是一个测试视频这是一个测试视频";
+    self.videoPlayer.titleFont = [UIFont boldSystemFontOfSize:16];
     self.videoPlayer.playUrl = movieUrl;
-    self.videoPlayer.isLive = NO;
+    self.videoPlayer.isLive = YES;
     self.videoPlayer.isWifiNetwork = YES;
-    self.videoPlayer.isAutoPlay = NO;
     [self.videoPlayer prepareToPlay];
     //[self.videoPlayer play];
     
     
     //设置弹幕，给barrageValue设置值就好了
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        self.videoPlayer.barrageValue = @"测试1";
-//    });
-//
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        self.videoPlayer.barrageValue = @"测试12";
-//    });
-//
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        self.videoPlayer.barrageValue = @"测试3";
-//    });
-//
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        self.videoPlayer.barrageValue = @"测试4";
-//    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.videoPlayer.barrageValue = @"测试1";
+    });
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.videoPlayer.barrageValue = @"测试12";
+    });
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.videoPlayer.barrageValue = @"测试3";
+    });
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.videoPlayer.barrageValue = @"测试4";
+    });
     [self addBarrage];
 }
 
@@ -226,8 +236,6 @@
             AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             appDelegate.allowRotation = YES;//设置横屏
             [self setNewOrientation:YES];//调用转屏代码
-            self.videoPlayer.showBackButton = YES;
-            self.videoPlayer.showTopBar = YES;
             self.videoPlayer.fullScreen = YES;
         }else{
             //非锁定状态
@@ -435,15 +443,11 @@
     if(self.videoPlayer.fullScreen){
         appDelegate.allowRotation = NO;//设置竖屏
         [self setNewOrientation:NO];//调用转屏代码
-        self.videoPlayer.showBackButton = NO;
-        self.videoPlayer.showTopBar = NO;
         self.videoPlayer.fullScreen = NO;
     }else{
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         appDelegate.allowRotation = YES;//设置横屏
         [self setNewOrientation:YES];//调用转屏代码
-        self.videoPlayer.showBackButton = YES;
-        self.videoPlayer.showTopBar = YES;
         self.videoPlayer.fullScreen = YES;
     }
     appDelegate.allowRotation = YES;

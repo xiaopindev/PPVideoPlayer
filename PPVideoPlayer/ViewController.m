@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "Demo1ViewController.h"
 #import "Demo2ViewController.h"
+#import "Demo3ViewController.h"
+#import "Demo4ViewController.h"
 
 #import <NELivePlayerFramework/NELivePlayerFramework.h>
 
@@ -17,6 +19,10 @@
 @end
 
 @implementation ViewController
+
+//- (void)viewWillAppear:(BOOL)animated{
+//    
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +43,16 @@
 }
 - (IBAction)demo2Action:(id)sender {
     Demo2ViewController *demo = [[Demo2ViewController alloc] init];
+    [self.navigationController pushViewController:demo animated:YES];
+}
+
+- (IBAction)demo3Action:(id)sender {
+    Demo3ViewController *demo = [[Demo3ViewController alloc] init];
+    [self.navigationController pushViewController:demo animated:YES];
+}
+
+- (IBAction)demo4Action:(id)sender {
+    Demo4ViewController *demo = [[Demo4ViewController alloc] init];
     [self.navigationController pushViewController:demo animated:YES];
 }
 

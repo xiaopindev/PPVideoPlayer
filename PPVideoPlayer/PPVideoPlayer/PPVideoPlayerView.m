@@ -38,6 +38,12 @@
 @property (nonatomic,assign) BOOL isLiveOver;
 //弹幕是否关闭
 @property (nonatomic,assign) BOOL isBarrageClose;
+//是否静音
+@property (nonatomic,assign) BOOL isMute;
+/**
+ 是否启用亮度和音量控制
+ */
+@property (nonatomic,assign) BOOL isBVControlOn;
 
 //顶部视频信息和控制视图
 @property (nonatomic,strong) UIButton *btnBack;
@@ -82,6 +88,7 @@
 @property (nonatomic,strong) UIButton *btnVideoList;
 @property (nonatomic,strong) UIButton *btnToTV;
 @property (nonatomic,strong) UIButton *btnBarrage;
+@property (nonatomic,strong) UIButton *btnSound;
 @property (nonatomic,strong) UIButton *btnFullScreen;
 
 @end
@@ -123,8 +130,8 @@
 #pragma mark - ---头
 -(UIView *)topView{
     if(!_topView){
-        _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 40)];
-        _topView.backgroundColor = [UIColor colorWithRed:70/255 green:70/255 blue:70/255 alpha:0.8];
+        _topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, 50)];
+        //_topView.backgroundColor = [UIColor colorWithRed:70/255 green:70/255 blue:70/255 alpha:0.8];
         _topView.alpha = 0;
     }
     return _topView;
@@ -133,7 +140,7 @@
 -(UIButton *)btnBack{
     if(!_btnBack){
         _btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnBack.frame = CGRectMake(10, 5, 30, 30);
+        _btnBack.frame = CGRectMake(10, 5, 40, 40);
         [_btnBack setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_back"] forState:UIControlStateNormal];
         [_btnBack addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -146,6 +153,7 @@
         _labTitle.textColor = [UIColor whiteColor];
         _labTitle.textAlignment = NSTextAlignmentLeft;
         _labTitle.font = [UIFont systemFontOfSize:15];
+        _labTitle.numberOfLines = 2;
     }
     return _labTitle;
 }
@@ -153,7 +161,7 @@
 -(UIButton *)btnShare{
     if(!_btnShare){
         _btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnShare.frame = CGRectMake(0, 10, 20, 20);
+        _btnShare.frame = CGRectMake(0, 5, 40, 40);
         [_btnShare setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_share"] forState:UIControlStateNormal];
         [_btnShare addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -163,7 +171,7 @@
 -(UIButton *)btnFavorite{
     if(!_btnFavorite){
         _btnFavorite = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnFavorite.frame = CGRectMake(0, 10, 20, 20);
+        _btnFavorite.frame = CGRectMake(0, 5, 40, 40);
         [_btnFavorite setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_favorite_empty"] forState:UIControlStateNormal];
         [_btnFavorite addTarget:self action:@selector(favoriteAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -173,7 +181,7 @@
 -(UIButton *)btnDownload{
     if(!_btnDownload){
         _btnDownload = [UIButton buttonWithType:UIButtonTypeCustom];
-        _btnDownload.frame = CGRectMake(0, 10, 20, 20);
+        _btnDownload.frame = CGRectMake(0, 5, 40, 40);
         [_btnDownload setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_download"] forState:UIControlStateNormal];
         [_btnDownload addTarget:self action:@selector(downloadAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -187,9 +195,9 @@
         [_btnReplay setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_play_big"] forState:UIControlStateNormal];
         [_btnReplay addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
     }
-    pX = (self.bounds.size.width - 55)/2;
+    pX = (self.bounds.size.width - 50)/2;
     pY = (self.bounds.size.height - 50)/2;
-    _btnReplay.frame = CGRectMake(pX, pY, 55, 50);
+    _btnReplay.frame = CGRectMake(pX, pY, 50, 50);
     return _btnReplay;
 }
 
@@ -294,6 +302,7 @@
 -(BrightnessVolumeView *)BVView{
     if(!_BVView){
         _BVView = [[BrightnessVolumeView alloc] initWithFrame:self.bounds];
+        _BVView.hidden = YES;
     }
     return _BVView;
 }
@@ -316,7 +325,7 @@
 -(UIView *)bottomView{
     if(!_bottomView){
         _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height-40, self.bounds.size.width, 40)];
-        _bottomView.backgroundColor = [UIColor colorWithRed:70/255 green:70/255 blue:70/255 alpha:0.8];
+        //_bottomView.backgroundColor = [UIColor colorWithRed:70/255 green:70/255 blue:70/255 alpha:0.8];
         _bottomView.alpha = 0;
     }
     return _bottomView;
@@ -366,11 +375,11 @@
 
 -(UISlider *)playProgress{
     if(!_playProgress){
-        _playProgress = [[UISlider alloc] initWithFrame:CGRectMake(0, 5, 0, 30)];
+        _playProgress = [[UISlider alloc] initWithFrame:CGRectMake(0, 5, 0, 40)];
         _playProgress.value = 0.0;
         _playProgress.maximumTrackTintColor = [UIColor clearColor];
         //设置播放进度颜色
-        _playProgress.minimumTrackTintColor = [UIColor orangeColor];
+        _playProgress.minimumTrackTintColor = [UIColor lightGrayColor];
         [_playProgress setThumbImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_slider"] forState:UIControlStateNormal];
         
         [_playProgress addTarget:self action:@selector(playerSliderTouchDown:) forControlEvents:UIControlEventTouchDown];
@@ -444,6 +453,16 @@
     return _btnBarrage;
 }
 
+-(UIButton *)btnSound{
+    if(!_btnSound){
+        _btnSound = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnSound.frame = CGRectMake(0, 10, 20, 20);
+        [_btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_1"] forState:UIControlStateNormal];
+        [_btnSound addTarget:self action:@selector(muteAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _btnSound;
+}
+
 -(UIButton *)btnFullScreen{
     if(!_btnFullScreen){
         _btnFullScreen = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -462,12 +481,10 @@
         self.backgroundColor = [UIColor blackColor];
         
         _controlHidden = YES;
-        _showBackButton = YES;
         _playStatus = PPVideoPlayerStatusUnknown;
         _controlStyle = PPVideoPlayerControlStyleDefault;
         [self addSubview:self.topView];
         [self addSubview:self.bottomView];
-        [self addSubview:self.btnBack];
         
         [UIView animateWithDuration:0.2 animations:^{
             self.topView.alpha = 1;
@@ -501,6 +518,10 @@
     self.labTitle.text = title;
 }
 
+-(void)setTitleFont:(UIFont *)titleFont{
+    self.labTitle.font = titleFont;
+}
+
 //设置全屏
 -(void)setFullScreen:(BOOL)fullScreen{
     _fullScreen = fullScreen;
@@ -510,8 +531,10 @@
     }else{
         if(fullScreen){
             self.controlStyle = PPVideoPlayerControlStyleFullScreen;
+            self.BVView.hidden = NO;
         }else{
             self.controlStyle = PPVideoPlayerControlStyleDefault;
+            self.BVView.hidden = YES;
         }
     }
 }
@@ -658,9 +681,7 @@
 -(void)setIsBVControlOn:(BOOL)isBVControlOn{
     _isBVControlOn = isBVControlOn;
     
-    if(!isBVControlOn){
-        [self.BVView removeFromSuperview];
-    }
+    self.BVView.hidden = !isBVControlOn;
 }
 
 #pragma mark - 播放器核心操作
@@ -741,7 +762,7 @@
                 // 获取视频总长度
                 NSTimeInterval totalSecond = weakSelf.player.duration;
                 
-                //NSLog(@"当前播放进度：%f/%f/%f",currentSecond,currentCache,totalSecond);
+                NSLog(@"当前播放进度：%f/%f/%f",currentSecond,currentCache,totalSecond);
                 
                 //改变播放时间和进度的状态
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -898,15 +919,19 @@
         return;
     }
     
-    self.topView.frame = CGRectMake(0, 0, self.bounds.size.width, 40);
+    self.topView.frame = CGRectMake(0, 0, self.bounds.size.width, 50);
     [self.topView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    CGFloat iconSize = 26,iconTop = 7;
+    UIImageView *bgView = [[UIImageView alloc] initWithFrame:self.topView.bounds];
+    bgView.image = [self imagesNamedFromCustomBundle:@"PPKit_vp_aphla_top"];
+    [self.topView addSubview:bgView];
+    
+    CGFloat iconSize = 40,iconTop = 7;
     if(self.controlStyle == PPVideoPlayerControlStyleFullScreen){
         //全屏模式：返回按钮，标题，分享按钮，收藏按钮，下载按钮
         pX = 10;
         [self addSubview:self.btnBack];
-        self.btnBack.frame = CGRectMake(pX, 5, 30, 30);
+        self.btnBack.frame = CGRectMake(pX, 5, 40, 40);
         CGFloat tmpX = pX + self.btnBack.frame.size.width + 5;
         
         BOOL hasRightBtn = NO;
@@ -942,19 +967,21 @@
         pWidth = self.topView.frame.size.width - tmpX;
         pWidth = pWidth - (self.topView.frame.size.width - pX);
         pHeight = self.topView.frame.size.height;
-        self.labTitle.frame = CGRectMake(tmpX, 5, pWidth, 30);
+        self.labTitle.frame = CGRectMake(tmpX, 5, pWidth, 40);
     }else{
         //默认模式元素：返回按钮，标题
         pX = 10;
         if(self.showBackButton){
             [self addSubview:self.btnBack];
-            self.btnBack.frame = CGRectMake(pX, 5, 30, 30);
+            self.btnBack.frame = CGRectMake(pX, 5, 40, 40);
             pX = pX + self.btnBack.frame.size.width + 5;
+        }else{
+            [self.btnBack removeFromSuperview];
         }
         [self.topView addSubview:self.labTitle];
         pWidth = self.topView.frame.size.width - pX - 10;
         pHeight = self.topView.frame.size.height;
-        self.labTitle.frame = CGRectMake(pX, 5, pWidth, 30);
+        self.labTitle.frame = CGRectMake(pX, 5, pWidth, 40);
     }
     
 }
@@ -972,9 +999,9 @@
     
     //播放按钮
     if(_btnReplay){
-        pX = (self.bounds.size.width - 55)/2;
+        pX = (self.bounds.size.width - 50)/2;
         pY = (self.bounds.size.height - 50)/2;
-        _btnReplay.frame = CGRectMake(pX, pY, 55, 50);
+        _btnReplay.frame = CGRectMake(pX, pY, 50, 50);
     }
 
     //提示信息
@@ -1019,11 +1046,15 @@
         self.bottomView.alpha = 0;
         return;
     }
-    self.bottomView.frame = CGRectMake(0, self.bounds.size.height-40, self.bounds.size.width, 40);
+    self.bottomView.frame = CGRectMake(0, self.bounds.size.height-50, self.bounds.size.width, 50);
     [self.bottomView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     pHeight = self.bottomView.frame.size.height;
     
-    CGFloat iconSize = 26,iconTop = 7;
+    UIImageView *bgView = [[UIImageView alloc] initWithFrame:self.topView.bounds];
+    bgView.image = [self imagesNamedFromCustomBundle:@"PPKit_vp_aphla_bottom"];
+    [self.bottomView addSubview:bgView];
+    
+    CGFloat iconSize = 40,iconTop = 7;
     if(self.controlStyle == PPVideoPlayerControlStyleFullScreen){
         //全屏模式:播放按钮，下一个视频按钮，直播标签，时间进度标签，进度条，质量播放按钮，播放列表按钮，投屏按钮，全屏按钮
         pX = 5;
@@ -1036,7 +1067,7 @@
             //直播显示样式
             [self.bottomView addSubview:self.labLiving];
             pHeight = self.bottomView.frame.size.height;
-            self.labLiving.frame = CGRectMake(pX, 5, 100, 30);
+            self.labLiving.frame = CGRectMake(pX, 5, 100, 40);
             
             pX = self.bottomView.frame.size.width - iconSize - 5;
             if(self.showFullScreenButton){
@@ -1045,6 +1076,18 @@
                 pX = pX - self.btnFullScreen.frame.size.width - 5;
                 
                 [self.btnFullScreen setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_smallscreen"] forState:UIControlStateNormal];
+            }
+            
+            if(self.showSoundButton){
+                [self.bottomView addSubview:self.btnSound];
+                self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
+                pX = pX - self.btnFullScreen.frame.size.width - 5;
+                
+                if(self.isMute){
+                    [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_0"] forState:UIControlStateNormal];
+                }else{
+                    [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_1"] forState:UIControlStateNormal];
+                }
             }
             
             if(self.showBarrageButton){
@@ -1068,7 +1111,7 @@
             }
             
             [self.bottomView addSubview:self.labStartTime];
-            self.labStartTime.frame = CGRectMake(pX, 5, 50, 30);
+            self.labStartTime.frame = CGRectMake(pX, 5, 50, 40);
             tmpX = pX + self.labStartTime.frame.size.width;
             
             BOOL hasRightBtn = NO;
@@ -1080,6 +1123,18 @@
                 pX = pX - self.btnFullScreen.frame.size.width - 5;
                 
                 [self.btnFullScreen setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_smallscreen"] forState:UIControlStateNormal];
+            }
+            
+            if(self.showSoundButton){
+                [self.bottomView addSubview:self.btnSound];
+                self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
+                pX = pX - self.btnFullScreen.frame.size.width - 5;
+                
+                if(self.isMute){
+                    [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_0"] forState:UIControlStateNormal];
+                }else{
+                    [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_1"] forState:UIControlStateNormal];
+                }
             }
             
             if(self.showBarrageButton){
@@ -1109,13 +1164,13 @@
             }
             
             [self.bottomView addSubview:self.labEndTime];
-            self.labEndTime.frame = CGRectMake(pX, 5, 50, 30);
+            self.labEndTime.frame = CGRectMake(pX, 5, 50, 40);
             
             [self.bottomView addSubview:self.loadedProgress];
             [self.bottomView addSubview:self.playProgress];
             pWidth = self.bottomView.frame.size.width - (self.bottomView.frame.size.width - pX) - tmpX;
-            self.playProgress.frame = CGRectMake(tmpX, 10, pWidth, 20);
-            self.loadedProgress.frame = CGRectMake(tmpX+2, 19, pWidth-4, 20);
+            self.playProgress.frame = CGRectMake(tmpX, 15, pWidth, 20);
+            self.loadedProgress.frame = CGRectMake(tmpX+2, 24, pWidth-4, 20);
         }
     }else{
         //默认模式：播放按钮，下一个视频按钮，直播标签，时间进度标签，进度条，质量播放按钮，投屏按钮，全屏按钮
@@ -1129,7 +1184,7 @@
             //直播显示样式
             [self.bottomView addSubview:self.labLiving];
             pHeight = self.bottomView.frame.size.height;
-            self.labLiving.frame = CGRectMake(pX, 5, 100, 30);
+            self.labLiving.frame = CGRectMake(pX, 5, 100, 40);
             
             pX = self.bottomView.frame.size.width - iconSize - 5;
             if(self.showFullScreenButton){
@@ -1138,6 +1193,18 @@
                 pX = pX - self.btnFullScreen.frame.size.width - 5;
                 
                 [self.btnFullScreen setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
+            }
+            
+            if(self.showSoundButton){
+                [self.bottomView addSubview:self.btnSound];
+                self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
+                pX = pX - self.btnFullScreen.frame.size.width - 5;
+                
+                if(self.isMute){
+                    [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_0"] forState:UIControlStateNormal];
+                }else{
+                    [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_1"] forState:UIControlStateNormal];
+                }
             }
             
             if(self.showBarrageButton){
@@ -1161,7 +1228,7 @@
             }
             
             [self.bottomView addSubview:self.labStartTime];
-            self.labStartTime.frame = CGRectMake(pX, 5, 50, 30);
+            self.labStartTime.frame = CGRectMake(pX, 5, 50, 40);
             tmpX = pX + self.labStartTime.frame.size.width;
             
             BOOL hasRightBtn = NO;
@@ -1173,6 +1240,17 @@
                 pX = pX - self.btnFullScreen.frame.size.width - 5;
                 
                 [self.btnFullScreen setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_fullscreen"] forState:UIControlStateNormal];
+            }
+            
+            if(self.showSoundButton){
+                [self.bottomView addSubview:self.btnSound];
+                self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
+                pX = pX - self.btnFullScreen.frame.size.width - 5;
+                if(self.isMute){
+                    [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_0"] forState:UIControlStateNormal];
+                }else{
+                    [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_1"] forState:UIControlStateNormal];
+                }
             }
             
             if(self.showBarrageButton){
@@ -1195,13 +1273,13 @@
             }
             
             [self.bottomView addSubview:self.labEndTime];
-            self.labEndTime.frame = CGRectMake(pX, 5, 50, 30);
+            self.labEndTime.frame = CGRectMake(pX, 5, 50, 40);
             
             [self.bottomView addSubview:self.loadedProgress];
             [self.bottomView addSubview:self.playProgress];
             pWidth = self.bottomView.frame.size.width - (self.bottomView.frame.size.width - pX) - tmpX;
-            self.playProgress.frame = CGRectMake(tmpX, 10, pWidth, 20);
-            self.loadedProgress.frame = CGRectMake(tmpX+2, 19, pWidth-4, 20);
+            self.playProgress.frame = CGRectMake(tmpX, 15, pWidth, 20);
+            self.loadedProgress.frame = CGRectMake(tmpX+2, 24, pWidth-4, 20);
         }
     }
 }
@@ -1211,7 +1289,9 @@
 -(void)setBarrageValue:(NSString *)barrageValue{
     _barrageValue = barrageValue;
     
-    [self startBarrage];
+    if (self.showBarrageButton){
+        [self startBarrage];
+    }
 }
 
 - (void)startBarrage {
@@ -1588,6 +1668,17 @@
     }
 }
 
+//静音设置
+- (void)muteAction{
+    self.isMute = !self.isMute;
+    [self.player setMute:self.isMute];
+    if (self.isMute){
+        [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_0"] forState:UIControlStateNormal];
+    }else{
+        [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_1"] forState:UIControlStateNormal];
+    }
+}
+
 //全屏点击
 - (void)fullScreenAction{
 
@@ -1646,11 +1737,8 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerPlaybackFinishedNotification object:_player];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstVideoDisplayedNotification object:_player];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerFirstAudioDisplayedNotification object:_player];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerVideoParseErrorNotification object:_player];
-    if(!self.isLive){
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerMoviePlayerSeekCompletedNotification object:_player];
-    }
-    //[[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerReleaseSueecssNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerMoviePlayerSeekCompletedNotification object:_player];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NELivePlayerReleaseSueecssNotification object:_player];
 }
 
 - (void)addNotifyObservers{
@@ -1696,11 +1784,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NELivePlayerReleaseSuccess:)
                                                  name:NELivePlayerReleaseSueecssNotification
-                                               object:_player];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(NELivePlayerVideoParseError:)
-                                                 name:NELivePlayerVideoParseErrorNotification
                                                object:_player];
 }
 
@@ -1764,7 +1847,7 @@
                 [self showScreenshot];
                 
                 //显示重播按钮
-                [self.btnReplay setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_replay"] forState:UIControlStateNormal];
+                [self.btnReplay setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_play_big"] forState:UIControlStateNormal];
                 [self addSubview:self.btnReplay];
             }
             
@@ -1808,22 +1891,26 @@
     [self removeLiveOverView];
     [self removeLiveNotStartedView];
     switch (self.player.playbackState) {
-        case NELPMoviePlaybackStatePaused:{
-            self.playStatus = PPVideoPlayerStatusPause;
-            break;
-        }
-        case NELPMoviePlaybackStateStopped:{
-            self.playStatus = PPVideoPlayerStatusStop;
-            break;
-        }
-        case NELPMoviePlaybackStatePlaying:{
-            self.playStatus = PPVideoPlayerStatusPlaying;
-            break;
-        }
-        case NELPMoviePlaybackStateSeeking:{
-            self.playStatus = PPVideoPlayerStatusSeeking;
-            break;
-        }
+            case NELPMoviePlaybackStatePaused:{
+                NSLog(@"NELPMoviePlaybackStatePaused");
+                self.playStatus = PPVideoPlayerStatusPause;
+                break;
+            }
+            case NELPMoviePlaybackStateStopped:{
+                NSLog(@"NELPMoviePlaybackStateStopped");
+                self.playStatus = PPVideoPlayerStatusStop;
+                break;
+            }
+            case NELPMoviePlaybackStatePlaying:{
+                NSLog(@"NELPMoviePlaybackStateSeeking");
+                self.playStatus = PPVideoPlayerStatusPlaying;
+                break;
+            }
+            case NELPMoviePlaybackStateSeeking:{
+                NSLog(@"NELPMoviePlaybackStateSeeking");
+                self.playStatus = PPVideoPlayerStatusSeeking;
+                break;
+            }
         default:
             break;
     }
@@ -1845,23 +1932,6 @@
 - (void)NELivePlayerMoviePlayerSeekCompleted:(NSNotification*)notification
 {
     NSLog(@"NELivePlayerMoviePlayerSeekCompleted");
-}
-
-//视频码流包解析异常时的消息通知
-- (void)NELivePlayerVideoParseError:(NSNotification*)notification
-{
-    NSLog(@"video parse error!");
-    
-    //销毁定时器
-    if(_timer){
-        dispatch_source_cancel(_timer);
-    }
-    
-    if(self.delegate && [self.delegate respondsToSelector:@selector(PPVideoPlayerView:playFailed:)]){
-        [self.delegate PPVideoPlayerView:self playFailed:nil];
-    }
-    
-    [self stopBarrage];
 }
 
 //播放器资源释放完成时的消息通知

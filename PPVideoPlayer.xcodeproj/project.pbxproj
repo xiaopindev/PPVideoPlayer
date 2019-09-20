@@ -12,6 +12,9 @@
 		5A4DCF5E213CFC540018AC3D /* BVResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5A4DCF5B213CFC540018AC3D /* BVResource.bundle */; };
 		5A4DCF5F213CFC540018AC3D /* BrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4DCF5C213CFC540018AC3D /* BrightnessView.m */; };
 		5A6530D5212AE6E60003DE7A /* PPVideoPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5A6530D4212AE6E60003DE7A /* PPVideoPlayer.bundle */; };
+		5A9B06112330E2C90007C215 /* PPVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B06102330E2C90007C215 /* PPVideoPlayer.m */; };
+		5A9B061D23320EFD0007C215 /* Demo4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B061C23320EFD0007C215 /* Demo4ViewController.m */; };
+		5A9B0628233361B90007C215 /* PPPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A9B0627233361B90007C215 /* PPPlayerControlView.m */; };
 		5AB64F1920E2459E0098B89E /* OCBarrageTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F0B20E2459E0098B89E /* OCBarrageTextCell.m */; };
 		5AB64F1A20E2459E0098B89E /* OCBarrageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F0C20E2459E0098B89E /* OCBarrageDescriptor.m */; };
 		5AB64F1B20E2459E0098B89E /* OCBarrageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F0D20E2459E0098B89E /* OCBarrageCell.m */; };
@@ -20,6 +23,17 @@
 		5AB64F1E20E2459E0098B89E /* OCBarrageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F1120E2459E0098B89E /* OCBarrageManager.m */; };
 		5AB64F1F20E2459E0098B89E /* OCBarrageTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F1220E2459E0098B89E /* OCBarrageTrackInfo.m */; };
 		5AB64F2020E2459E0098B89E /* OCBarrageRenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB64F1620E2459E0098B89E /* OCBarrageRenderView.m */; };
+		5AC1D9C523308B900058551E /* Demo3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC1D9C423308B900058551E /* Demo3ViewController.m */; };
+		5AC1D9DB2330BADF0058551E /* artpSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9D62330BADE0058551E /* artpSource.framework */; };
+		5AC1D9DC2330BADF0058551E /* artpSource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9D62330BADE0058551E /* artpSource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5AC1D9DD2330BADF0058551E /* alivcffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9D72330BADE0058551E /* alivcffmpeg.framework */; };
+		5AC1D9DE2330BADF0058551E /* alivcffmpeg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9D72330BADE0058551E /* alivcffmpeg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5AC1D9DF2330BADF0058551E /* AliyunMediaDownloader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9D82330BADE0058551E /* AliyunMediaDownloader.framework */; };
+		5AC1D9E02330BADF0058551E /* AliyunMediaDownloader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9D82330BADE0058551E /* AliyunMediaDownloader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5AC1D9E12330BADF0058551E /* AliyunPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9D92330BADF0058551E /* AliyunPlayer.framework */; };
+		5AC1D9E22330BADF0058551E /* AliyunPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9D92330BADF0058551E /* AliyunPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5AC1D9E32330BADF0058551E /* AlivcConan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9DA2330BADF0058551E /* AlivcConan.framework */; };
+		5AC1D9E42330BADF0058551E /* AlivcConan.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC1D9DA2330BADF0058551E /* AlivcConan.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7244636A1E8B6A2700A03059 /* cdvideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 724463691E8B6A2700A03059 /* cdvideo.mp4 */; };
 		728B901B1E77F05A00E30C61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B901A1E77F05A00E30C61 /* main.m */; };
 		728B901E1E77F05A00E30C61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B901D1E77F05A00E30C61 /* AppDelegate.m */; };
@@ -50,6 +64,24 @@
 		728B90C51E77F4D200E30C61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728B90C41E77F4D200E30C61 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5AC1D9D52330BA880058551E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5AC1D9DC2330BADF0058551E /* artpSource.framework in Embed Frameworks */,
+				5AC1D9E22330BADF0058551E /* AliyunPlayer.framework in Embed Frameworks */,
+				5AC1D9DE2330BADF0058551E /* alivcffmpeg.framework in Embed Frameworks */,
+				5AC1D9E02330BADF0058551E /* AliyunMediaDownloader.framework in Embed Frameworks */,
+				5AC1D9E42330BADF0058551E /* AlivcConan.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		491A82F961C3941D0869C800 /* libPods-PPVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PPVideoPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E941C5E0009BB152505D996 /* Pods-PPVideoPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PPVideoPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -59,6 +91,12 @@
 		5A4DCF5B213CFC540018AC3D /* BVResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BVResource.bundle; sourceTree = "<group>"; };
 		5A4DCF5C213CFC540018AC3D /* BrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessView.m; sourceTree = "<group>"; };
 		5A6530D4212AE6E60003DE7A /* PPVideoPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PPVideoPlayer.bundle; sourceTree = "<group>"; };
+		5A9B060F2330E2C90007C215 /* PPVideoPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPVideoPlayer.h; sourceTree = "<group>"; };
+		5A9B06102330E2C90007C215 /* PPVideoPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPVideoPlayer.m; sourceTree = "<group>"; };
+		5A9B061B23320EFD0007C215 /* Demo4ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo4ViewController.h; sourceTree = "<group>"; };
+		5A9B061C23320EFD0007C215 /* Demo4ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo4ViewController.m; sourceTree = "<group>"; };
+		5A9B0626233361B90007C215 /* PPPlayerControlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPPlayerControlView.h; sourceTree = "<group>"; };
+		5A9B0627233361B90007C215 /* PPPlayerControlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPPlayerControlView.m; sourceTree = "<group>"; };
 		5AB64F0720E2459E0098B89E /* CALayer+OCBarrage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+OCBarrage.h"; sourceTree = "<group>"; };
 		5AB64F0820E2459E0098B89E /* OCBarrageTextDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCBarrageTextDescriptor.h; sourceTree = "<group>"; };
 		5AB64F0920E2459E0098B89E /* OCBarrageTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCBarrageTrackInfo.h; sourceTree = "<group>"; };
@@ -77,6 +115,14 @@
 		5AB64F1620E2459E0098B89E /* OCBarrageRenderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCBarrageRenderView.m; sourceTree = "<group>"; };
 		5AB64F1720E2459E0098B89E /* OCBarrageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCBarrageCell.h; sourceTree = "<group>"; };
 		5AB64F1820E2459E0098B89E /* OCBarrageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCBarrageDescriptor.h; sourceTree = "<group>"; };
+		5AC1D9B5233085C90058551E /* PPVideoPlayerEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PPVideoPlayerEnum.h; sourceTree = "<group>"; };
+		5AC1D9C323308B900058551E /* Demo3ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo3ViewController.h; sourceTree = "<group>"; };
+		5AC1D9C423308B900058551E /* Demo3ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo3ViewController.m; sourceTree = "<group>"; };
+		5AC1D9D62330BADE0058551E /* artpSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = artpSource.framework; path = Frameworks/artpSource.framework; sourceTree = "<group>"; };
+		5AC1D9D72330BADE0058551E /* alivcffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = alivcffmpeg.framework; path = Frameworks/alivcffmpeg.framework; sourceTree = "<group>"; };
+		5AC1D9D82330BADE0058551E /* AliyunMediaDownloader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AliyunMediaDownloader.framework; path = Frameworks/AliyunMediaDownloader.framework; sourceTree = "<group>"; };
+		5AC1D9D92330BADF0058551E /* AliyunPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AliyunPlayer.framework; path = Frameworks/AliyunPlayer.framework; sourceTree = "<group>"; };
+		5AC1D9DA2330BADF0058551E /* AlivcConan.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlivcConan.framework; path = Frameworks/AlivcConan.framework; sourceTree = "<group>"; };
 		724463691E8B6A2700A03059 /* cdvideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cdvideo.mp4; sourceTree = "<group>"; };
 		728B90161E77F05A00E30C61 /* PPVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		728B901A1E77F05A00E30C61 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -124,7 +170,9 @@
 				728B90C31E77F4CB00E30C61 /* AudioToolbox.framework in Frameworks */,
 				728B90C11E77F4C500E30C61 /* VideoToolbox.framework in Frameworks */,
 				728B90BF1E77F4BE00E30C61 /* AVFoundation.framework in Frameworks */,
+				5AC1D9DB2330BADF0058551E /* artpSource.framework in Frameworks */,
 				728B90BD1E77F4B500E30C61 /* CoreMedia.framework in Frameworks */,
+				5AC1D9E32330BADF0058551E /* AlivcConan.framework in Frameworks */,
 				728B90BB1E77F4AE00E30C61 /* CoreGraphics.framework in Frameworks */,
 				728B90B91E77F4A800E30C61 /* CoreVideo.framework in Frameworks */,
 				728B90B71E77F4A100E30C61 /* CoreAudio.framework in Frameworks */,
@@ -134,8 +182,11 @@
 				728B90AF1E77F46100E30C61 /* libiconv.tbd in Frameworks */,
 				728B90AD1E77F45900E30C61 /* libstdc++.tbd in Frameworks */,
 				728B90AB1E77F45300E30C61 /* libbz2.tbd in Frameworks */,
+				5AC1D9DD2330BADF0058551E /* alivcffmpeg.framework in Frameworks */,
 				728B90A91E77F44B00E30C61 /* libz.tbd in Frameworks */,
 				728B90A71E77F43F00E30C61 /* CFNetwork.framework in Frameworks */,
+				5AC1D9E12330BADF0058551E /* AliyunPlayer.framework in Frameworks */,
+				5AC1D9DF2330BADF0058551E /* AliyunMediaDownloader.framework in Frameworks */,
 				728B90A51E77F43400E30C61 /* CoreTelephony.framework in Frameworks */,
 				728B90A31E77F42900E30C61 /* SystemConfiguration.framework in Frameworks */,
 				56A1E72F998A9B4DF2A729AE /* libPods-PPVideoPlayer.a in Frameworks */,
@@ -206,17 +257,21 @@
 				728B903F1E77F23000E30C61 /* PPVideoPlayer */,
 				728B901C1E77F05A00E30C61 /* AppDelegate.h */,
 				728B901D1E77F05A00E30C61 /* AppDelegate.m */,
+				728B90251E77F05A00E30C61 /* Assets.xcassets */,
+				724463691E8B6A2700A03059 /* cdvideo.mp4 */,
 				728B901F1E77F05A00E30C61 /* ViewController.h */,
 				728B90201E77F05A00E30C61 /* ViewController.m */,
 				728B909C1E77F3B700E30C61 /* Demo1ViewController.h */,
 				728B909D1E77F3B700E30C61 /* Demo1ViewController.m */,
 				728B909F1E77F3BF00E30C61 /* Demo2ViewController.h */,
 				728B90A01E77F3BF00E30C61 /* Demo2ViewController.m */,
-				724463691E8B6A2700A03059 /* cdvideo.mp4 */,
-				728B90221E77F05A00E30C61 /* Main.storyboard */,
-				728B90251E77F05A00E30C61 /* Assets.xcassets */,
-				728B90271E77F05A00E30C61 /* LaunchScreen.storyboard */,
+				5AC1D9C323308B900058551E /* Demo3ViewController.h */,
+				5AC1D9C423308B900058551E /* Demo3ViewController.m */,
+				5A9B061B23320EFD0007C215 /* Demo4ViewController.h */,
+				5A9B061C23320EFD0007C215 /* Demo4ViewController.m */,
 				728B902A1E77F05A00E30C61 /* Info.plist */,
+				728B90271E77F05A00E30C61 /* LaunchScreen.storyboard */,
+				728B90221E77F05A00E30C61 /* Main.storyboard */,
 				728B90191E77F05A00E30C61 /* Supporting Files */,
 			);
 			path = PPVideoPlayer;
@@ -233,6 +288,11 @@
 		728B903E1E77F1AB00E30C61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5AC1D9DA2330BADF0058551E /* AlivcConan.framework */,
+				5AC1D9D72330BADE0058551E /* alivcffmpeg.framework */,
+				5AC1D9D82330BADE0058551E /* AliyunMediaDownloader.framework */,
+				5AC1D9D92330BADF0058551E /* AliyunPlayer.framework */,
+				5AC1D9D62330BADE0058551E /* artpSource.framework */,
 				728B90C41E77F4D200E30C61 /* UIKit.framework */,
 				728B90C21E77F4CB00E30C61 /* AudioToolbox.framework */,
 				728B90C01E77F4C400E30C61 /* VideoToolbox.framework */,
@@ -262,8 +322,13 @@
 				5A4DCF57213CFC540018AC3D /* BrightnessVolumeView */,
 				5AB64F0620E2459E0098B89E /* OCBarrage */,
 				5A6530D4212AE6E60003DE7A /* PPVideoPlayer.bundle */,
+				5AC1D9B5233085C90058551E /* PPVideoPlayerEnum.h */,
 				728B90731E77F25400E30C61 /* PPVideoPlayerView.h */,
 				728B90741E77F25400E30C61 /* PPVideoPlayerView.m */,
+				5A9B060F2330E2C90007C215 /* PPVideoPlayer.h */,
+				5A9B06102330E2C90007C215 /* PPVideoPlayer.m */,
+				5A9B0626233361B90007C215 /* PPPlayerControlView.h */,
+				5A9B0627233361B90007C215 /* PPPlayerControlView.m */,
 			);
 			path = PPVideoPlayer;
 			sourceTree = "<group>";
@@ -289,6 +354,7 @@
 				728B90131E77F05A00E30C61 /* Frameworks */,
 				728B90141E77F05A00E30C61 /* Resources */,
 				C943F93188A05A65F2EE4526 /* [CP] Embed Pods Frameworks */,
+				5AC1D9D52330BA880058551E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -325,6 +391,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -401,17 +468,21 @@
 				5AB64F1B20E2459E0098B89E /* OCBarrageCell.m in Sources */,
 				728B90981E77F25400E30C61 /* PPVideoPlayerView.m in Sources */,
 				5A4DCF5D213CFC540018AC3D /* BrightnessVolumeView.m in Sources */,
+				5AC1D9C523308B900058551E /* Demo3ViewController.m in Sources */,
 				5AB64F1F20E2459E0098B89E /* OCBarrageTrackInfo.m in Sources */,
 				5AB64F2020E2459E0098B89E /* OCBarrageRenderView.m in Sources */,
 				5AB64F1E20E2459E0098B89E /* OCBarrageManager.m in Sources */,
+				5A9B0628233361B90007C215 /* PPPlayerControlView.m in Sources */,
 				5AB64F1920E2459E0098B89E /* OCBarrageTextCell.m in Sources */,
 				728B909E1E77F3B700E30C61 /* Demo1ViewController.m in Sources */,
 				5AB64F1A20E2459E0098B89E /* OCBarrageDescriptor.m in Sources */,
 				728B90211E77F05A00E30C61 /* ViewController.m in Sources */,
 				5AB64F1C20E2459E0098B89E /* OCBarrageTextDescriptor.m in Sources */,
 				5AB64F1D20E2459E0098B89E /* CALayer+OCBarrage.m in Sources */,
+				5A9B06112330E2C90007C215 /* PPVideoPlayer.m in Sources */,
 				728B901E1E77F05A00E30C61 /* AppDelegate.m in Sources */,
 				728B90A11E77F3BF00E30C61 /* Demo2ViewController.m in Sources */,
+				5A9B061D23320EFD0007C215 /* Demo4ViewController.m in Sources */,
 				728B901B1E77F05A00E30C61 /* main.m in Sources */,
 				5A4DCF5F213CFC540018AC3D /* BrightnessView.m in Sources */,
 			);
@@ -479,7 +550,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -520,7 +591,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -533,6 +604,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = F9UAGF98L6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/PPVideoPlayer/PPVideoPlayer/LivePlayer/include";
 				INFOPLIST_FILE = PPVideoPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -552,6 +628,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = F9UAGF98L6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/PPVideoPlayer/PPVideoPlayer/LivePlayer/include";
 				INFOPLIST_FILE = PPVideoPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

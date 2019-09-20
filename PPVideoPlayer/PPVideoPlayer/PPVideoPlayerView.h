@@ -52,6 +52,7 @@ typedef enum : NSUInteger {
  视频标题，在顶部标题栏显示
  */
 @property (nonatomic,strong) NSString *title;
+@property (nonatomic,strong) UIFont *titleFont;
 /**
  设置弹幕值
  */
@@ -79,11 +80,6 @@ typedef enum : NSUInteger {
  是否已经全屏锁定
  */
 @property (nonatomic,assign) BOOL isFSLocked;
-
-/**
- 是否启用亮度和音量控制
- */
-@property (nonatomic,assign) BOOL isBVControlOn;
 /**
  是否是直播，默认NO
  */
@@ -130,6 +126,8 @@ typedef enum : NSUInteger {
 @property (nonatomic,assign) BOOL showToTVButton;
 //显示弹幕按钮
 @property (nonatomic,assign) BOOL showBarrageButton;
+//显示音量控制按钮
+@property (nonatomic,assign) BOOL showSoundButton;
 //显示全屏按钮
 @property (nonatomic,assign) BOOL showFullScreenButton;
 
