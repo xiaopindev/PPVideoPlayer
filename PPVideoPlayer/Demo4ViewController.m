@@ -11,11 +11,6 @@
 
 #import "AppDelegate.h"
 
-#define videoURL1 @"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
-#define videoURL2 @"http://vjs.zencdn.net/v/oceans.mp4"
-#define videoURL3 @"https://media.w3.org/2010/05/sintel/trailer.mp4"
-#define liveURL1 @"rtmp://live.hkstv.hk.lxdns.com/live/hks"
-
 @interface Demo4ViewController ()<PPVideoPlayerDelegate>
 
 @property (nonatomic,strong) PPVideoPlayer *videoPlayer;
@@ -152,6 +147,10 @@
      CCTV6高清：http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8
      
      点播：
+     http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4
+     http://vjs.zencdn.net/v/oceans.mp4
+     https://media.w3.org/2010/05/sintel/trailer.mp4
+     http://1252065688.vod2.myqcloud.com/d7dc3e4avodgzp1252065688/e66bae544564972818527816264/MY2sqkSHZMkA.mp4
      抖音测试地址
      http://video8.miliyo.com/a/a2/c1/a2c111c4b0dc3af74ac19b446e19f469.mp4
      http://video8.miliyo.com/a/28/c0/28c04dfb37e23fc2b61d024120d38677.mp4

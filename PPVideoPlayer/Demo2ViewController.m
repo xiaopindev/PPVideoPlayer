@@ -41,7 +41,7 @@
 //        _videoPlayer.showListButton = YES;
 //        _videoPlayer.showToTVButton = YES;
         _videoPlayer.showSoundButton = YES;
-        _videoPlayer.showFullScreenButton = YES;
+//        _videoPlayer.showFullScreenButton = YES;
 //        _videoPlayer.showBarrageButton = YES;
         _videoPlayer.controlStyle = PPVideoPlayerControlStyleDefault;
     }
@@ -147,11 +147,11 @@
     
     //NSURL *movieUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"cdvideo" ofType:@"mp4"]];
     NSURL *movieUrl = [NSURL URLWithString:@"http://1252065688.vod2.myqcloud.com/d7dc3e4avodgzp1252065688/e66bae544564972818527816264/MY2sqkSHZMkA.mp4"];
-    movieUrl = [NSURL URLWithString:@"rtmp://58.200.131.2:1935/livetv/hunantv"];
+    //movieUrl = [NSURL URLWithString:@"rtmp://58.200.131.2:1935/livetv/hunantv"];
     self.videoPlayer.title = @"这是一个测试视频这是一个测试视频这是一个测试视频这是一个测试视频这是一个测试视频";
     self.videoPlayer.titleFont = [UIFont boldSystemFontOfSize:16];
     self.videoPlayer.playUrl = movieUrl;
-    self.videoPlayer.isLive = YES;
+    self.videoPlayer.isLive = NO;
     self.videoPlayer.isWifiNetwork = YES;
     [self.videoPlayer prepareToPlay];
     //[self.videoPlayer play];

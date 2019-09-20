@@ -1126,6 +1126,7 @@
             }
             
             if(self.showSoundButton){
+                hasRightBtn = YES;
                 [self.bottomView addSubview:self.btnSound];
                 self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnSound.frame.size.width - 5;
@@ -1243,6 +1244,7 @@
             }
             
             if(self.showSoundButton){
+                hasRightBtn = YES;
                 [self.bottomView addSubview:self.btnSound];
                 self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
                 pX = pX - self.btnSound.frame.size.width - 5;
