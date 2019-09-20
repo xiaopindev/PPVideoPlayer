@@ -302,4 +302,88 @@
     appDelegate.allowRotation = YES;
 }
 
+-(void)playVideoInVisiableCells{
+    NSArray *visiableCells = [self.tableView visibleCells];
+    // 在可见cell中找到第一个有视频的cell
+    JPVideoPlayerCell *videoCell = nil;
+    for (JPVideoPlayerCell *cell in visiableCells) {
+        if (cell.videoPath.length > 0) {
+            videoCell = cell;
+            break;
+        }
+    }
+    // 如果找到了, 就开始播放视频
+    if (videoCell) {
+        self.playingCell = videoCell;
+        self.currentVideoPath = videoCell.videoPath;
+        JPVideoPlayer *player = [JPVideoPlayer sharedInstance];
+        [player playWithUrl:[NSURL URLWithString:videoCell.videoPath] showView:videoCell.containerView];
+        player.mute = YES;
+    }
+}
+
+-(void)handleScroll{
+    // 找到下一个要播放的cell(最在屏幕中心的)
+    JPVideoPlayerCell *finnalCell = nil;
+    NSArray *visiableCells = [self.tableView visibleCells];
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    CGFloat gap = MAXFLOAT;
+    for (JPVideoPlayerCell *cell in visiableCells) {
+
+        [indexPaths addObject:cell.indexPath];
+        if (cell.videoPath.length > 0) { // 如果这个cell有视频
+            CGPoint coorCentre = [cell.superview convertPoint:cell.center toView:nil];
+            CGFloat delta = fabs(coorCentre.y-[UIScreen mainScreen].bounds.size.height*0.5);
+            if (delta < gap) {
+                gap = delta;
+                finnalCell = cell;
+            }
+        }
+    }
+    // 注意, 如果正在播放的cell和finnalCell是同一个cell, 不应该在播放
+    if (finnalCell != nil && self.playingCell != finnalCell)  {
+        [[JPVideoPlayer sharedInstance]stop];
+        [[JPVideoPlayer sharedInstance]playWithUrl:[NSURL URLWithString:finnalCell.videoPath] showView:finnalCell.containerView];
+        self.playingCell = finnalCell;
+        self.currentVideoPath = finnalCell.videoPath;
+        [JPVideoPlayer sharedInstance].mute = YES;
+        return;
+    }
+    // 再看正在播放视频的那个cell移出视野, 则停止播放
+    BOOL isPlayingCellVisiable = YES;
+    if (![indexPaths containsObject:self.playingCell.indexPath]) {
+        isPlayingCellVisiable = NO;
+    }  if (!isPlayingCellVisiable && self.playingCell) {
+        [self stopPlay];
+    }
+    
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    JPVideoPlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID forIndexPath:indexPath];
+    if (self.maxNumCannotPlayVideoCells > 0) {
+        if (indexPath.row <= self.maxNumCannotPlayVideoCells-1) {
+            cell.cellStyle = PlayUnreachCellStyleUp;
+        } else if (indexPath.row >= self.listArr.count-self.maxNumCannotPlayVideoCells){
+            cell.cellStyle = PlayUnreachCellStyleDown;
+        } else{
+            cell.cellStyle = PlayUnreachCellStyleNone;
+        }
+    }
+    return cell;
+}
+
+// 松手时已经静止,只会调用scrollViewDidEndDragging
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (decelerate == NO) {
+        // scrollView已经完全静止
+        [self handleScroll];
+    }
+}
+// 松手时还在运动, 先调用scrollViewDidEndDragging,在调用scrollViewDidEndDecelerating
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    // scrollView已经完全静止
+    [self handleScroll];
+}
 @end

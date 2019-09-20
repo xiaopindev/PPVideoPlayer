@@ -118,7 +118,7 @@
         } else {
             [_player setBufferStrategy:NELPAntiJitter]; // 点播抗抖动
         }
-        [_player setScalingMode:NELPMovieScalingModeNone]; // 设置画面显示模式，默认原始大小
+        [_player setScalingMode:NELPMovieScalingModeAspectFit]; // 设置画面显示模式，默认原始大小
         [_player setShouldAutoplay:NO]; // 设置prepareToPlay完成后是否自动播放
         [_player setHardwareDecoder:YES]; // 设置解码模式，是否开启硬件解码
         [_player setPauseInBackground:YES]; // 设置切入后台时的状态，暂停还是继续播放
@@ -762,7 +762,7 @@
                 // 获取视频总长度
                 NSTimeInterval totalSecond = weakSelf.player.duration;
                 
-                NSLog(@"当前播放进度：%f/%f/%f",currentSecond,currentCache,totalSecond);
+                //NSLog(@"当前播放进度：%f/%f/%f",currentSecond,currentCache,totalSecond);
                 
                 //改变播放时间和进度的状态
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -1514,17 +1514,6 @@
 //5.左右滑动调播放进度
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     NSLog(@"%s",__FUNCTION__);
-//    if(self.player){
-//        if(self.player.status == AVPlayerStatusUnknown){
-//            NSLog(@"播放未知状态");
-//        }else if (self.player.status == AVPlayerStatusFailed){
-//            NSLog(@"播放失败");
-//        }
-//    }
-}
-
--(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSLog(@"%s",__FUNCTION__);
     UITouch *touch = [touches anyObject];
     
     if([touch view] == self.topView || [touch view] == self.bottomView){
@@ -1537,6 +1526,11 @@
             [self performSelector:@selector(doubleTap) withObject:nil afterDelay:0.3];
         }
     }
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    NSLog(@"%s",__FUNCTION__);
+
 }
 
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
