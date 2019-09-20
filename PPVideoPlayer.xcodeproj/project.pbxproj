@@ -321,14 +321,14 @@
 			children = (
 				5A4DCF57213CFC540018AC3D /* BrightnessVolumeView */,
 				5AB64F0620E2459E0098B89E /* OCBarrage */,
+				5A9B0626233361B90007C215 /* PPPlayerControlView.h */,
+				5A9B0627233361B90007C215 /* PPPlayerControlView.m */,
 				5A6530D4212AE6E60003DE7A /* PPVideoPlayer.bundle */,
+				5A9B060F2330E2C90007C215 /* PPVideoPlayer.h */,
+				5A9B06102330E2C90007C215 /* PPVideoPlayer.m */,
 				5AC1D9B5233085C90058551E /* PPVideoPlayerEnum.h */,
 				728B90731E77F25400E30C61 /* PPVideoPlayerView.h */,
 				728B90741E77F25400E30C61 /* PPVideoPlayerView.m */,
-				5A9B060F2330E2C90007C215 /* PPVideoPlayer.h */,
-				5A9B06102330E2C90007C215 /* PPVideoPlayer.m */,
-				5A9B0626233361B90007C215 /* PPPlayerControlView.h */,
-				5A9B0627233361B90007C215 /* PPPlayerControlView.m */,
 			);
 			path = PPVideoPlayer;
 			sourceTree = "<group>";

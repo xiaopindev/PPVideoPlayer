@@ -1081,7 +1081,7 @@
             if(self.showSoundButton){
                 [self.bottomView addSubview:self.btnSound];
                 self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
-                pX = pX - self.btnFullScreen.frame.size.width - 5;
+                pX = pX - self.btnSound.frame.size.width - 5;
                 
                 if(self.isMute){
                     [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_0"] forState:UIControlStateNormal];
@@ -1128,7 +1128,7 @@
             if(self.showSoundButton){
                 [self.bottomView addSubview:self.btnSound];
                 self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
-                pX = pX - self.btnFullScreen.frame.size.width - 5;
+                pX = pX - self.btnSound.frame.size.width - 5;
                 
                 if(self.isMute){
                     [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_0"] forState:UIControlStateNormal];
@@ -1198,7 +1198,7 @@
             if(self.showSoundButton){
                 [self.bottomView addSubview:self.btnSound];
                 self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
-                pX = pX - self.btnFullScreen.frame.size.width - 5;
+                pX = pX - self.btnSound.frame.size.width - 5;
                 
                 if(self.isMute){
                     [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_0"] forState:UIControlStateNormal];
@@ -1245,7 +1245,7 @@
             if(self.showSoundButton){
                 [self.bottomView addSubview:self.btnSound];
                 self.btnSound.frame = CGRectMake(pX, iconTop, iconSize, iconSize);
-                pX = pX - self.btnFullScreen.frame.size.width - 5;
+                pX = pX - self.btnSound.frame.size.width - 5;
                 if(self.isMute){
                     [self.btnSound setImage:[self imagesNamedFromCustomBundle:@"PPKit_vp_sound_0"] forState:UIControlStateNormal];
                 }else{
