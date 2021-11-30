@@ -1,13 +1,15 @@
 # OC自定义UI播放器，基于网易播放器SDK,支持直播、点播视频播放，支持弹幕功能和常见需求功能，简单易用。
 # 当前版本v2.0
 
+现在源代码以后先：pod install 
+
 使用方法：
 
 1、手动添加
 
             a.下载PPVideoPlayer SDK, 把PPVideoPlayer目录copy到你项目工程中的指定目录下
    
-            b.在你的Podfile文件中增加：pod 'NELivePlayer', '~> 2.4.2' ， SDK所需要的第三方播放器
+            b.在你的Podfile文件中增加：pod 'NELivePlayer', '~> 2.8.0' ， SDK所需要的第三方播放器
   
 2.Cocoapods添加(由于加上第三方库，验证出错，无法提交到Cocoapods，请使用手动方式)
 
