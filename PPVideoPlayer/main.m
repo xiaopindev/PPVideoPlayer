@@ -2,15 +2,17 @@
 //  main.m
 //  PPVideoPlayer
 //
-//  Created by cdmac on 17/3/14.
-//  Copyright © 2017年 pinguo. All rights reserved.
+//  Created by xiaopin on 2021/11/30.
 //
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {
+    NSString * appDelegateClassName;
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+        // Setup code that might create autoreleased objects goes here.
+        appDelegateClassName = NSStringFromClass([AppDelegate class]);
     }
+    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
 }

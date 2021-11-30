@@ -85,3 +85,33 @@ Frameworks/AliyunPlayer.framework/Info.plist
 Frameworks/artpSource.framework/artpSource
 Frameworks/artpSource.framework/Headers/ArtpFactory.h
 Frameworks/artpSource.framework/Info.plist
+Pods/Target Support Files/NELivePlayer/NELivePlayer.release.xcconfig
+Pods/Target Support Files/NELivePlayer/NELivePlayer.debug.xcconfig
+Pods/Pods.xcodeproj/xcuserdata/swhcxp.xcuserdatad/xcschemes/Pods-PPVideoPlayer.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/swhcxp.xcuserdatad/xcschemes/NELivePlayer.xcscheme
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/NELPGslb
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/Modules/module.modulemap
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/Info.plist
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/Headers/NELPGslbUrlItem.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/Headers/NELPGslbStatInfo.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/Headers/NELPGslbResult.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/Headers/NELPGslbPlaybackTactics.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/Headers/NELPGslbDetailUrlItem.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/Headers/NELPGslbDetailResult.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELPGslb.framework/Headers/NELPGslb.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/NELivePlayerFramework
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/Modules/module.modulemap
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/Info.plist
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/Headers/NELPNetworkDiagnosisReporter.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/Headers/NELivePlayerNotication.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/Headers/NELivePlayerModel.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/Headers/NELivePlayerFramework.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/Headers/NELivePlayerDefine.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/Headers/NELivePlayerController.h
+Pods/NELivePlayer/LivePlayer_iOS_SDK_v2.8.0/NELivePlayerFramework.framework/Headers/NELivePlayer.h
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks-Release-output-files.xcfilelist
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks-Release-input-files.xcfilelist
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks-Debug-output-files.xcfilelist
+Pods/Target Support Files/Pods-PPVideoPlayer/Pods-PPVideoPlayer-frameworks-Debug-input-files.xcfilelist
+PPVideoPlayer.xcodeproj/xcuserdata/cdmac.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+PPVideoPlayer/.DS_Store

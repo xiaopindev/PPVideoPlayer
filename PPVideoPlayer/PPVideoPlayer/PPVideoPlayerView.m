@@ -914,10 +914,7 @@
         return;
     }
     
-    if(!self.showTopBar){
-        [self.topView removeFromSuperview];
-        return;
-    }
+    [self.topView setHidden:!self.showTopBar];
     
     self.topView.frame = CGRectMake(0, 0, self.bounds.size.width, 50);
     [self.topView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
